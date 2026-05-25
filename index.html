@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harpreet Singh — Gen AI Engineer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo">HS</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">Hi, I'm</p>
+      <h1 class="hero-name">Harpreet Singh</h1>
+      <div class="hero-title-wrapper">
+        <span class="hero-title-static">Gen AI /</span>
+        <span class="hero-typewriter" id="typewriter"></span>
+      </div>
+      <p class="hero-bio">
+        LLM Engineer building agentic systems, multimodal models, and RAG pipelines.<br/>
+        MS Computer Science @ UCSD &bull; IIT-BHU
+      </p>
+      <div class="hero-links">
+        <a href="mailto:harpreet22happy@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.linkedin.com/in/harpreet-singh-317253b7/" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/Harpreet221295" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-float">
+        <div class="code-block">
+          <span class="code-comment"># current focus</span><br/>
+          <span class="code-key">role</span> <span class="code-op">=</span> <span class="code-str">"Gen AI Engineer"</span><br/>
+          <span class="code-key">stack</span> <span class="code-op">=</span> [<span class="code-str">"LLMs"</span>, <span class="code-str">"RAG"</span>, <span class="code-str">"Agents"</span>]<br/>
+          <span class="code-key">location</span> <span class="code-op">=</span> <span class="code-str">"United States"</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">Experience</h2>
+      <div class="timeline">
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="card-header">
+              <div>
+                <h3>Generative AI (LLM) Engineer</h3>
+                <span class="company">Vagaro</span>
+              </div>
+              <span class="date">July 2024 – Present &nbsp;|&nbsp; United States</span>
+            </div>
+            <ul>
+              <li>Built LLM-based ETL pipelines to extract insights from customer support calls — issues, agent performance, upsell opportunities, cancellation intents.</li>
+              <li>Researched semi-supervised hierarchical clustering with LLMs; created novel pipeline for dynamically generating cancellation intent categories.</li>
+              <li>Trained and benchmarked NER models from HuggingFace vs. Microsoft Presidio for PII detection in call transcripts.</li>
+              <li>Built Agentic RAG + SQL framework generating personalized upselling pitches for Vagaro's premium features.</li>
+              <li>Working on <strong>Vagaro Connect AI</strong> — multi-agent chatbot for managing appointments, queries, and scheduling.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>Python</span><span>PyTorch</span><span>PySpark</span><span>HuggingFace</span>
+              <span>Azure OpenAI</span><span>LangChain</span><span>LangGraph</span><span>ChromaDB</span>
+              <span>Azure Synapse</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="card-header">
+              <div>
+                <h3>ML Engineer — Generative AI / LLMs</h3>
+                <span class="company">Symbl.ai</span>
+              </div>
+              <span class="date">Mar 2024 – Jul 2024 &nbsp;|&nbsp; United States</span>
+            </div>
+            <ul>
+              <li><strong>Unified Large Multimodal Model:</strong> Designed & deployed a model encoding audio + text prompts to generate text responses across ASR, QA, diarization, summarization, and emotion/gender recognition — no intermediate transcription required.</li>
+              <li>Proposed architectural innovations to extend context length beyond Whisper's 30s limit to ~30 minutes using novel encoder designs.</li>
+              <li>Curated terabytes of speech + text datasets across 8+ tasks; trained on 8×A100 (80GB) GPU clusters using Accelerate + DeepSpeed.</li>
+              <li><strong>Sliding Window Attention:</strong> Implemented attention-sink-based sliding window in Llama 7B and Phi to increase inference context length.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>HuggingFace</span><span>DeepSpeed</span><span>Accelerate</span><span>LangChain</span>
+              <span>TensorRT-LLM</span><span>Triton</span><span>GCP</span><span>FastAPI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="card-header">
+              <div>
+                <h3>Visiting Research Scholar — Gen AI / LLMs</h3>
+                <span class="company">Julian McAuley's Lab, UC San Diego</span>
+              </div>
+              <span class="date">2023 – 2024 &nbsp;|&nbsp; United States</span>
+            </div>
+            <ul>
+              <li>Built a RAG model for next-item recommendation, retrieving from vector DBs using user's past interactions.</li>
+              <li>Trained dual-encoder (retriever) and cross-encoder (re-ranker) using contrastive learning and knowledge distillation.</li>
+              <li>Fine-tuned Llama 7B with LoRA to generate personalized item titles based on user history.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>Python</span><span>LangChain</span><span>HuggingFace</span><span>PEFT / LoRA</span>
+              <span>RAG</span><span>FAISS</span><span>Recommendation Systems</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="card-header">
+              <div>
+                <h3>ML Associate</h3>
+                <span class="company">Robert Bosch Centre for Data Science & AI</span>
+              </div>
+              <span class="date">2020 – 2021 &nbsp;|&nbsp; India</span>
+            </div>
+            <ul>
+              <li>Built an image ranking model using statistical ranking algorithms after stakeholder requirement analysis.</li>
+              <li>Created scalable ETL pipeline with AWS Glue + PySpark; containerized with Docker; CI/CD on Amazon EC2 via Airflow.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>Python</span><span>AWS</span><span>Docker</span><span>Airflow</span><span>PySpark</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="card-header">
+              <div>
+                <h3>AI Engineer</h3>
+                <span class="company">Medical Intelligence & Language Engineering Lab, IISc</span>
+              </div>
+              <span class="date">2019 – 2020 &nbsp;|&nbsp; India</span>
+            </div>
+            <ul>
+              <li>Developed & deployed a Deep-CNN facial emotion detection web app with DBSCAN post-processing; deployed on Azure Kubernetes Service.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>PyTorch</span><span>TensorFlow</span><span>Docker</span><span>Azure</span><span>Kubernetes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="card-header">
+              <div>
+                <h3>Applications Engineer</h3>
+                <span class="company">Oracle India</span>
+              </div>
+              <span class="date">2018 – 2019 &nbsp;|&nbsp; India</span>
+            </div>
+            <ul>
+              <li>Created Map components for Hybrid Mobile Application Development; UI Development for Exascale Cloud.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>JavaScript</span><span>Mobile</span><span>Cloud UI</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title fade-in">Education</h2>
+      <div class="edu-grid">
+
+        <div class="edu-card fade-in">
+          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="edu-body">
+            <h3>University of California, San Diego (UCSD)</h3>
+            <p class="edu-degree">M.S. Computer Science &nbsp;&bull;&nbsp; GPA: 3.96 / 4.00</p>
+            <p class="edu-meta">2021 – 2023 &nbsp;|&nbsp; San Diego, California</p>
+            <p class="edu-courses"><strong>Coursework:</strong> Advanced NLP, Recommender Systems, Advanced CV, Search Optimization (RL)</p>
+          </div>
+        </div>
+
+        <div class="edu-card fade-in">
+          <div class="edu-icon"><i class="fas fa-university"></i></div>
+          <div class="edu-body">
+            <h3>IIT (BHU) Varanasi</h3>
+            <p class="edu-degree">B.Tech (Honours) Computer Science &nbsp;&bull;&nbsp; GPA: 9.08 / 10</p>
+            <p class="edu-meta">2014 – 2018 &nbsp;|&nbsp; Varanasi, India</p>
+            <p class="edu-courses"><strong>Coursework:</strong> Software Engineering, Data Structures, Algorithms, Parallel & Distributed Computing, ML</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">Technical Skills</h2>
+      <div class="skills-grid">
+
+        <div class="skill-group fade-in">
+          <h4><i class="fas fa-code"></i> Languages</h4>
+          <div class="skill-tags">
+            <span>Python</span><span>C++</span><span>C</span><span>Java</span>
+            <span>JavaScript</span><span>MATLAB</span>
+          </div>
+        </div>
+
+        <div class="skill-group fade-in">
+          <h4><i class="fas fa-brain"></i> AI / ML</h4>
+          <div class="skill-tags">
+            <span>PyTorch</span><span>TensorFlow</span><span>HuggingFace</span><span>PEFT</span>
+            <span>DeepSpeed</span><span>Accelerate</span><span>LangChain</span><span>LangGraph</span>
+            <span>spaCy</span><span>NLTK</span><span>torchtext</span>
+          </div>
+        </div>
+
+        <div class="skill-group fade-in">
+          <h4><i class="fas fa-database"></i> Data & Vector DBs</h4>
+          <div class="skill-tags">
+            <span>ChromaDB</span><span>FAISS</span><span>PySpark</span>
+            <span>MySQL</span><span>Airflow</span>
+          </div>
+        </div>
+
+        <div class="skill-group fade-in">
+          <h4><i class="fas fa-cloud"></i> Cloud & DevOps</h4>
+          <div class="skill-tags">
+            <span>Azure</span><span>Azure OpenAI</span><span>Azure Synapse</span>
+            <span>Azure ML Studio</span><span>GCP</span><span>AWS</span>
+            <span>Docker</span><span>Kubernetes</span><span>Git</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title fade-in">Publications</h2>
+      <div class="pub-card fade-in">
+        <div class="pub-badge">COLING 2022</div>
+        <div class="pub-body">
+          <h3>"Medical Question Understanding and Answering with Knowledge Grounding and Semantic Self-Supervision"</h3>
+          <p class="pub-authors">Mrini, K., <strong>Singh, H.</strong>, et al. &mdash; 29th International Conference on Computational Linguistics (COLING), 2022</p>
+          <ul>
+            <li>Built a retrieval pipeline to select relevant answer sentences from a medical knowledge base.</li>
+            <li>Proposed two novel self-supervised loss functions to train BART-large for retrieval and sentence selection.</li>
+            <li>Outperformed baselines (DPR, GAR) on ROUGE and Human Judgement metrics.</li>
+          </ul>
+          <div class="tech-tags">
+            <span>NLP</span><span>QA</span><span>BERT</span><span>BART</span><span>FAISS</span>
+            <span>Self-Supervised Learning</span><span>Transformers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">Projects</h2>
+      <div class="projects-grid">
+
+        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Path-planning-using-voronoi-diagrams-for-JetBot" target="_blank">
+          <div class="project-top">
+            <i class="fas fa-folder-open"></i>
+            <i class="fab fa-github project-gh"></i>
+          </div>
+          <h3>Path Planning with Voronoi Diagrams for JetBot</h3>
+          <p>Autonomous robot path planning using Voronoi diagrams for obstacle avoidance on JetBot.</p>
+          <span class="project-lang">Jupyter Notebook</span>
+        </a>
+
+        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Bayesian-Networks-for-Genetic-Inheritance" target="_blank">
+          <div class="project-top">
+            <i class="fas fa-folder-open"></i>
+            <i class="fab fa-github project-gh"></i>
+          </div>
+          <h3>Bayesian Networks for Genetic Inheritance</h3>
+          <p>Probabilistic graphical model for modeling and reasoning about genetic inheritance patterns.</p>
+          <span class="project-lang">MATLAB</span>
+        </a>
+
+        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Emotion-Timeline-Formation-for-Each-Subject-in-a-Video" target="_blank">
+          <div class="project-top">
+            <i class="fas fa-folder-open"></i>
+            <i class="fab fa-github project-gh"></i>
+          </div>
+          <h3>Emotion Timeline for Subjects in Video</h3>
+          <p>Deep learning pipeline to track and form emotion timelines per subject across video frames.</p>
+          <span class="project-lang">Python</span>
+        </a>
+
+        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Markov-Networks-for-Optical-Character-Recognition" target="_blank">
+          <div class="project-top">
+            <i class="fas fa-folder-open"></i>
+            <i class="fab fa-github project-gh"></i>
+          </div>
+          <h3>Markov Networks for OCR</h3>
+          <p>Applied Markov Networks for probabilistic optical character recognition tasks.</p>
+          <span class="project-lang">MATLAB</span>
+        </a>
+
+        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Titanic-Machine-Learning-from-Disaster-solution" target="_blank">
+          <div class="project-top">
+            <i class="fas fa-folder-open"></i>
+            <i class="fab fa-github project-gh"></i>
+          </div>
+          <h3>Titanic — ML from Disaster</h3>
+          <p>Kaggle competition solution for predicting survival using feature engineering and ensemble models.</p>
+          <span class="project-lang">Jupyter Notebook</span>
+        </a>
+
+        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Predictive-Modeling-on-NOAA-weather-dataset" target="_blank">
+          <div class="project-top">
+            <i class="fas fa-folder-open"></i>
+            <i class="fab fa-github project-gh"></i>
+          </div>
+          <h3>Predictive Modeling on NOAA Weather</h3>
+          <p>Weather prediction models trained on NOAA dataset using regression and classification techniques.</p>
+          <span class="project-lang">Jupyter Notebook</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Built by Harpreet Singh &bull; <a href="https://github.com/Harpreet221295" target="_blank">github.com/Harpreet221295</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
