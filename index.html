@@ -416,6 +416,57 @@
           </div>
         </a>
 
+        <!-- FEATURED: Qwen3.8-27B evaluated as an agent -->
+        <a class="project-featured fade-in" href="https://github.com/Harpreet221295/qwen3_8_27b_workloads" target="_blank">
+          <div class="featured-side">
+            <div class="featured-shot">
+              <img src="assets/figures/qwen_tau2_console.png"
+                   alt="τ²-bench console: Qwen3.8-27B as the airline agent on the left, the simulated customer on the right, graded by tau2's evaluator at the end" loading="lazy" />
+            </div>
+
+            <div class="featured-stats">
+              <span><b>57/60</b> capability cases</span>
+              <span><b>12/12</b> sandboxed coding tasks</span>
+              <span><b>0.74</b> τ²-bench airline pass^1, 50 tasks</span>
+              <span><b>0.79</b> τ²-bench retail pass^1, 114 tasks</span>
+              <span><b>3</b> live consoles</span>
+              <span><b>1&times;</b> A100 80 GB, $1.59/hr</span>
+            </div>
+
+            <div class="tech-tags">
+              <span>Qwen3.8-27B</span><span>vLLM</span><span>RunPod</span><span>τ²-bench</span><span>Terminal-Bench style</span>
+              <span>Docker / Colima</span><span>E2B</span><span>FastAPI</span><span>LiteLLM</span><span>Python</span>
+            </div>
+          </div>
+          <div class="featured-body">
+            <div class="featured-head">
+              <div>
+                <span class="featured-flag">Open source &bull; Apache-2.0 &bull; three repos</span>
+                <h3>Qwen3.8-27B, evaluated as an agent</h3>
+                <p class="featured-tagline">Playable benchmarks for an open model: watch it work, then read the number.</p>
+              </div>
+              <i class="fab fa-github featured-gh"></i>
+            </div>
+
+            <p class="featured-lede">
+              A benchmark score tells you a model passed; watching it work tells you why. This project self-hosts
+              <strong>Qwen3.8-27B</strong> on one A100 with vLLM (<code>qwen3_8_27b_vllm_server</code>) and then puts it to work
+              in three places you can sit and watch: a streaming chat playground with 13 self-grading capability suites and a
+              <strong>playable &tau;&sup2;-bench console</strong> where the model serves a simulated customer, or you play the
+              customer yourself (<code>qwen3_8_27b_workloads</code>); and a <strong>sandboxed coding-agent harness</strong> with
+              twelve graded terminal tasks and a live run console (<code>qwen3_8_27b_agent_harness</code>).
+            </p>
+
+            <ul class="featured-points">
+              <li><strong>The real &tau;&sup2;-bench, not a re-implementation.</strong> Sierra's tau2-bench is a submodule; the console drives its orchestrator step by step across the airline, retail and telecom domains, streams every agent, customer and tool message, and ends with the evaluator's reward card explaining the grade. The numbers are stated as indicative, not leaderboard: the user simulator is Qwen itself.</li>
+              <li><strong>A coding agent you can watch inside a sandbox.</strong> A tool loop (bash, read, write, edit, finish) over Docker containers with no network, twelve Terminal-Bench-style tasks whose graders are validated with an oracle that must pass and a no-op that must fail. 12/12 with zero malformed tool calls, and the README says the set is now too easy.</li>
+              <li><strong>Suites that grade themselves.</strong> Vision, OCR and chart tests use generated images with known ground truth; coding snippets run against hidden tests; structured output is checked against schema, choice and regex; long context is a needle at 8K and 32K. When the grader was stricter than the model, the grader was fixed and the fix is logged.</li>
+              <li><strong>Thinking made visible.</strong> The playground streams the answer and the reasoning in separate panels, with off / low / medium / xhigh effort modes and matching sampling, image attach, and a demo tool loop you can see turn by turn.</li>
+              <li><strong>Deployment documented to the flag.</strong> vLLM with the qwen3 reasoning and tool-call parsers, a random API key instead of the guessable template default, and every gotcha hit on the way recorded: JSON-valued flags that crash-loop a pod, the renamed reasoning field, the new structured-outputs parameter.</li>
+            </ul>
+          </div>
+        </a>
+
         <!-- FEATURED: Post-training labs -->
         <a class="project-featured fade-in" href="https://github.com/Harpreet221295/post-training-labs" target="_blank">
           <div class="featured-side">
