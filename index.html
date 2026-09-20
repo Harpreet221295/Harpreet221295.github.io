@@ -356,56 +356,6 @@
           </div>
         </a>
 
-        <!-- FEATURED: Post-training labs -->
-        <a class="project-featured fade-in" href="https://github.com/Harpreet221295/post-training-labs" target="_blank">
-          <div class="featured-side">
-            <div class="featured-shot">
-              <img src="assets/figures/labs_stack.svg"
-                   alt="Six labs in order: PPO, SFT, DPO/SimPO/KTO, RLVR, on-policy distillation, agent trajectory synthesis, each with its headline number" loading="lazy" />
-            </div>
-
-            <div class="featured-stats">
-              <span><b>6</b> labs, in stack order</span>
-              <span><b>6</b> hand-written objectives</span>
-              <span><b>32</b> offline tests</span>
-              <span><b>2</b> negative results, reported</span>
-              <span><b>1</b> 8 GB GPU</span>
-            </div>
-
-            <div class="tech-tags">
-              <span>PyTorch</span><span>PEFT / LoRA</span><span>Qwen2.5-0.5B</span><span>GSM8K</span><span>UltraFeedback</span>
-              <span>Gymnasium</span><span>SymPy</span><span>pytest</span>
-            </div>
-          </div>
-          <div class="featured-body">
-            <div class="featured-head">
-              <div>
-                <span class="featured-flag">Open source &bull; MIT &bull; post-training</span>
-                <h3>Post-training labs</h3>
-                <p class="featured-tagline">The modern LLM post-training stack, implemented by hand and evaluated honestly.</p>
-              </div>
-              <i class="fab fa-github featured-gh"></i>
-            </div>
-
-            <p class="featured-lede">
-              Six self-contained labs that build on each other: PPO with GAE &rarr; supervised fine-tuning &rarr;
-              DPO / SimPO / KTO &rarr; RL with verifiable rewards &rarr; on-policy distillation &rarr; agent trajectory
-              synthesis. In every one, the objective, reward, advantage or masking logic is written by hand and unit-tested;
-              the data loading, training loop and evaluation gate are harness. Every lab reports base vs tuned on held-out
-              data with its noise floor, and two of the six report a negative or mixed result rather than rounding it up.
-            </p>
-
-            <ul class="featured-points">
-              <li><strong>PPO from scratch</strong> on BipedalWalker: &minus;92 &rarr; 184, stuck in a limp-gait local optimum; an entropy floor predicted from the theory and confirmed with an overlaid A/B took it to 251.</li>
-              <li><strong>SFT found a real failure a loss curve hides.</strong> Degeneration fell 10/15 &rarr; 4/15, but the model never learned to stop: the end-of-turn token is 0.7% of graded targets, so a token-averaged loss barely sees it.</li>
-              <li><strong>DPO's famous flaw, measured.</strong> Preference accuracy 0.660 with no length inflation, and the margin is <em>entirely</em> the difference-only artifact: chosen log-prob &minus;3.91, rejected &minus;7.89, margin = &beta; &times; the gap exactly.</li>
-              <li><strong>RLVR that made the model worse, and why.</strong> Below base at every pass@k; a flat solve-rate, <em>rising</em> entropy and half-dead groups together diagnose too little training signal. The verifier probe was clean; the 40% shorter outputs were a side-effect of the group-relative advantage.</li>
-              <li><strong>On-policy beats off-policy distillation</strong> 31.5% vs 27.0% from a 12.5% base on GSM8K, with the caveat stated: the gap is about one standard error at n=200.</li>
-              <li><strong>Synthesised agent data that lifts tool use 0% &rarr; 65%</strong> without demonstrations, kept honest by a grounded checker that re-executes every trajectory and a relabelling step whose share is capped and whose goal entropy is reported.</li>
-            </ul>
-          </div>
-        </a>
-
         <!-- FEATURED: ProactiveClaw -->
         <a class="project-featured fade-in" href="https://github.com/Harpreet221295/ProactiveClaw" target="_blank">
           <div class="featured-side">
@@ -454,6 +404,56 @@
               <li><strong>Optional by construction.</strong> Connectors are gated on config and credentials — their tools are removed from the model's tool list entirely, so it can't assume access it doesn't have.</li>
             </ul>
 
+          </div>
+        </a>
+
+        <!-- FEATURED: Post-training labs -->
+        <a class="project-featured fade-in" href="https://github.com/Harpreet221295/post-training-labs" target="_blank">
+          <div class="featured-side">
+            <div class="featured-shot">
+              <img src="assets/figures/labs_stack.svg"
+                   alt="Six labs in order: PPO, SFT, DPO/SimPO/KTO, RLVR, on-policy distillation, agent trajectory synthesis, each with its headline number" loading="lazy" />
+            </div>
+
+            <div class="featured-stats">
+              <span><b>6</b> labs, in stack order</span>
+              <span><b>6</b> hand-written objectives</span>
+              <span><b>32</b> offline tests</span>
+              <span><b>2</b> negative results, reported</span>
+              <span><b>1</b> 8 GB GPU</span>
+            </div>
+
+            <div class="tech-tags">
+              <span>PyTorch</span><span>PEFT / LoRA</span><span>Qwen2.5-0.5B</span><span>GSM8K</span><span>UltraFeedback</span>
+              <span>Gymnasium</span><span>SymPy</span><span>pytest</span>
+            </div>
+          </div>
+          <div class="featured-body">
+            <div class="featured-head">
+              <div>
+                <span class="featured-flag">Open source &bull; MIT &bull; post-training</span>
+                <h3>Post-training labs</h3>
+                <p class="featured-tagline">The modern LLM post-training stack, implemented by hand and evaluated honestly.</p>
+              </div>
+              <i class="fab fa-github featured-gh"></i>
+            </div>
+
+            <p class="featured-lede">
+              Six self-contained labs that build on each other: PPO with GAE &rarr; supervised fine-tuning &rarr;
+              DPO / SimPO / KTO &rarr; RL with verifiable rewards &rarr; on-policy distillation &rarr; agent trajectory
+              synthesis. In every one, the objective, reward, advantage or masking logic is written by hand and unit-tested;
+              the data loading, training loop and evaluation gate are harness. Every lab reports base vs tuned on held-out
+              data with its noise floor, and two of the six report a negative or mixed result rather than rounding it up.
+            </p>
+
+            <ul class="featured-points">
+              <li><strong>PPO from scratch</strong> on BipedalWalker: &minus;92 &rarr; 184, stuck in a limp-gait local optimum; an entropy floor predicted from the theory and confirmed with an overlaid A/B took it to 251.</li>
+              <li><strong>SFT found a real failure a loss curve hides.</strong> Degeneration fell 10/15 &rarr; 4/15, but the model never learned to stop: the end-of-turn token is 0.7% of graded targets, so a token-averaged loss barely sees it.</li>
+              <li><strong>DPO's famous flaw, measured.</strong> Preference accuracy 0.660 with no length inflation, and the margin is <em>entirely</em> the difference-only artifact: chosen log-prob &minus;3.91, rejected &minus;7.89, margin = &beta; &times; the gap exactly.</li>
+              <li><strong>RLVR that made the model worse, and why.</strong> Below base at every pass@k; a flat solve-rate, <em>rising</em> entropy and half-dead groups together diagnose too little training signal. The verifier probe was clean; the 40% shorter outputs were a side-effect of the group-relative advantage.</li>
+              <li><strong>On-policy beats off-policy distillation</strong> 31.5% vs 27.0% from a 12.5% base on GSM8K, with the caveat stated: the gap is about one standard error at n=200.</li>
+              <li><strong>Synthesised agent data that lifts tool use 0% &rarr; 65%</strong> without demonstrations, kept honest by a grounded checker that re-executes every trajectory and a relabelling step whose share is capped and whose goal entropy is reported.</li>
+            </ul>
           </div>
         </a>
 
