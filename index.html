@@ -416,53 +416,103 @@
           </div>
         </a>
 
-        <!-- FEATURED: Qwen3.8-27B evaluated as an agent -->
+        <!-- FEATURED: Qwen3.8-27B on τ²-bench -->
         <a class="project-featured fade-in" href="https://github.com/Harpreet221295/qwen3_8_27b_workloads" target="_blank">
           <div class="featured-side">
             <div class="featured-shot">
-              <img src="assets/figures/qwen_tau2_console.png"
-                   alt="τ²-bench console: Qwen3.8-27B as the airline agent on the left, the simulated customer on the right, graded by tau2's evaluator at the end" loading="lazy" />
+              <img src="assets/figures/qwen_tau2_hero.svg"
+                   alt="τ²-bench, playable: a tau2 task feeds a conversation loop between a customer (Qwen simulator or you) and the Qwen3.8-27B agent calling a mock business API; tau2's evaluator grades the outcome" loading="lazy" />
             </div>
 
             <div class="featured-stats">
+              <span><b>0.74</b> airline pass^1, 50 tasks</span>
+              <span><b>0.79</b> retail pass^1, 114 tasks</span>
+              <span><b>3</b> domains playable</span>
               <span><b>57/60</b> capability cases</span>
-              <span><b>12/12</b> sandboxed coding tasks</span>
-              <span><b>0.74</b> τ²-bench airline pass^1, 50 tasks</span>
-              <span><b>0.79</b> τ²-bench retail pass^1, 114 tasks</span>
-              <span><b>3</b> live consoles</span>
-              <span><b>1&times;</b> A100 80 GB, $1.59/hr</span>
+              <span><b>13</b> self-grading suites</span>
+              <span><b>2</b> live consoles</span>
             </div>
 
             <div class="tech-tags">
-              <span>Qwen3.8-27B</span><span>vLLM</span><span>RunPod</span><span>τ²-bench</span><span>Terminal-Bench style</span>
-              <span>Docker / Colima</span><span>E2B</span><span>FastAPI</span><span>LiteLLM</span><span>Python</span>
+              <span>Qwen3.8-27B</span><span>τ²-bench</span><span>vLLM</span><span>RunPod</span><span>LiteLLM</span>
+              <span>FastAPI</span><span>tool calling</span><span>structured outputs</span><span>vision</span><span>Python</span>
             </div>
           </div>
           <div class="featured-body">
             <div class="featured-head">
               <div>
-                <span class="featured-flag">Open source &bull; Apache-2.0 &bull; three repos</span>
-                <h3>Qwen3.8-27B, evaluated as an agent</h3>
-                <p class="featured-tagline">Playable benchmarks for an open model: watch it work, then read the number.</p>
+                <span class="featured-flag">Open source &bull; Apache-2.0 &bull; API-sandbox agent eval</span>
+                <h3>Qwen3.8-27B on &tau;&sup2;-bench, playable</h3>
+                <p class="featured-tagline">A self-hosted open model serving simulated customers through a real business API, graded by the official evaluator.</p>
               </div>
               <i class="fab fa-github featured-gh"></i>
             </div>
 
             <p class="featured-lede">
-              A benchmark score tells you a model passed; watching it work tells you why. This project self-hosts
-              <strong>Qwen3.8-27B</strong> on one A100 with vLLM (<code>qwen3_8_27b_vllm_server</code>) and then puts it to work
-              in three places you can sit and watch: a streaming chat playground with 13 self-grading capability suites and a
-              <strong>playable &tau;&sup2;-bench console</strong> where the model serves a simulated customer, or you play the
-              customer yourself (<code>qwen3_8_27b_workloads</code>); and a <strong>sandboxed coding-agent harness</strong> with
-              twelve graded terminal tasks and a live run console (<code>qwen3_8_27b_agent_harness</code>).
+              &tau;&sup2;-bench is the standard test for customer-service agents: a scripted customer, an agent bound by a policy,
+              a mock airline / retail / telecom API with a real database, and an evaluator that checks the final database state,
+              the write actions and natural-language assertions. This project wires <strong>Qwen3.8-27B</strong>, self-hosted on one
+              A100 with vLLM (<code>qwen3_8_27b_vllm_server</code>), into Sierra's real tau2-bench and adds a console where every
+              message streams as it happens and <strong>you can be the customer yourself</strong>. The same repo carries a streaming
+              chat playground and 13 self-grading capability suites.
             </p>
 
             <ul class="featured-points">
-              <li><strong>The real &tau;&sup2;-bench, not a re-implementation.</strong> Sierra's tau2-bench is a submodule; the console drives its orchestrator step by step across the airline, retail and telecom domains, streams every agent, customer and tool message, and ends with the evaluator's reward card explaining the grade. The numbers are stated as indicative, not leaderboard: the user simulator is Qwen itself.</li>
-              <li><strong>A coding agent you can watch inside a sandbox.</strong> A tool loop (bash, read, write, edit, finish) over Docker containers with no network, twelve Terminal-Bench-style tasks whose graders are validated with an oracle that must pass and a no-op that must fail. 12/12 with zero malformed tool calls, and the README says the set is now too easy.</li>
-              <li><strong>Suites that grade themselves.</strong> Vision, OCR and chart tests use generated images with known ground truth; coding snippets run against hidden tests; structured output is checked against schema, choice and regex; long context is a needle at 8K and 32K. When the grader was stricter than the model, the grader was fixed and the fix is logged.</li>
-              <li><strong>Thinking made visible.</strong> The playground streams the answer and the reasoning in separate panels, with off / low / medium / xhigh effort modes and matching sampling, image attach, and a demo tool loop you can see turn by turn.</li>
-              <li><strong>Deployment documented to the flag.</strong> vLLM with the qwen3 reasoning and tool-call parsers, a random API key instead of the guessable template default, and every gotcha hit on the way recorded: JSON-valued flags that crash-loop a pod, the renamed reasoning field, the new structured-outputs parameter.</li>
+              <li><strong>The real benchmark, driven step by step.</strong> tau2-bench is a git submodule, not a re-implementation; the console drives its orchestrator turn by turn across airline (50 tasks), retail (114) and telecom, and ends with the evaluator's reward card explaining exactly why the run passed or failed.</li>
+              <li><strong>Two ways to run a task.</strong> Simulated: Qwen plays the customer from the script. Interactive: you type, then "End &amp; grade". Batch numbers go through tau2's own runner for pass^k, with checkpointing and re-judging of saved conversations.</li>
+              <li><strong>Honest about the setup.</strong> The customer simulator is Qwen itself, so 0.74 / 0.79 are stated as indicative, not leaderboard; the official gpt-4.1 simulator is one flag away, and the NL-assertion judge is gpt-4.1 as in the official harness. Failure types are catalogued: duplicate writes, modify vs cancel vs exchange, unnecessary transfers.</li>
+              <li><strong>Capability suites that grade themselves.</strong> Vision, OCR and chart tests run on generated images with known ground truth; coding snippets execute against hidden tests; structured output is checked against schema, choice and regex; long context is a needle at 8K and 32K. When a grader was stricter than the model, the grader was fixed and logged.</li>
+              <li><strong>Thinking made visible.</strong> The playground streams the answer and the reasoning in separate panels with off / low / medium / xhigh effort, image attach, and a demo tool loop you can watch turn by turn. Deployment is documented to the flag, including the gotchas that crash-loop a pod.</li>
+            </ul>
+          </div>
+        </a>
+
+        <!-- FEATURED: Coding agent harness -->
+        <a class="project-featured fade-in" href="https://github.com/Harpreet221295/qwen3_8_27b_agent_harness" target="_blank">
+          <div class="featured-side">
+            <div class="featured-shot">
+              <img src="assets/figures/qwen_harness_hero.svg"
+                   alt="Coding agent harness: a Terminal-Bench-style task goes to a Qwen3.8-27B agent loop that runs bash, read, write and edit inside a Docker sandbox; a test script in the same sandbox grades the result; a live console shows every step" loading="lazy" />
+            </div>
+
+            <div class="featured-stats">
+              <span><b>12/12</b> graded tasks, first run</span>
+              <span><b>0</b> malformed tool calls</span>
+              <span><b>4&ndash;10</b> steps per task</span>
+              <span><b>22&ndash;62 s</b> per task</span>
+              <span><b>3</b> sandbox backends</span>
+              <span><b>3</b> console tabs</span>
+            </div>
+
+            <div class="tech-tags">
+              <span>Qwen3.8-27B</span><span>Docker / Colima</span><span>E2B</span><span>Terminal-Bench style</span><span>Harbor layout</span>
+              <span>vLLM</span><span>tool calling</span><span>FastAPI</span><span>WebSockets</span><span>Python</span>
+            </div>
+          </div>
+          <div class="featured-body">
+            <div class="featured-head">
+              <div>
+                <span class="featured-flag">Open source &bull; Apache-2.0 &bull; coding-agent eval</span>
+                <h3>Coding agent harness for open models</h3>
+                <p class="featured-tagline">Watch an open model work through terminal tasks inside a sandbox, one tool call at a time.</p>
+              </div>
+              <i class="fab fa-github featured-gh"></i>
+            </div>
+
+            <p class="featured-lede">
+              A tool-using agent loop (bash, read, write, edit, finish) that runs <strong>Qwen3.8-27B</strong> against twelve graded
+              coding and terminal tasks inside <strong>Docker sandboxes with no network</strong>, plus a console where you watch a run
+              live or chat with the agent in a persistent workspace. Tasks follow the Terminal-Bench / Harbor layout, so the grader
+              is a test script executed in the same sandbox and the reward is 0 or 1. Works with any OpenAI-compatible endpoint
+              that supports tool calls (<code>qwen3_8_27b_agent_harness</code>).
+            </p>
+
+            <ul class="featured-points">
+              <li><strong>Graders you can trust.</strong> Every task ships an oracle solution that must pass and a no-op that must fail, and the harness validates both before the model is scored. Twelve tasks from easy (fix failing tests, a wc clone, CSV to JSON) to hard (six bugs in a stdlib HTTP API checked by a client).</li>
+              <li><strong>A loop built for long transcripts.</strong> Tool output is truncated to keep context bounded, the working directory persists across bash calls, several edits go out in one turn as parallel tool calls, and a fallback parser catches raw tool-call text if the server's parser ever misses.</li>
+              <li><strong>Isolation as a first-class choice.</strong> Docker via Colima or Docker Desktop by default (2 CPU, 2 GB, no network, fresh container per run), E2B cloud microVMs, or a local mode for debugging that is guarded by a confirmation.</li>
+              <li><strong>Three ways to look.</strong> Run: one task in a fresh sandbox, graded, with thinking in gold and files and commands typing out as the model writes them. Session: a persistent sandbox you talk to, where files survive across messages. Past runs: every batch with full transcripts.</li>
+              <li><strong>12/12 on the first run, reported with its caveat.</strong> Zero malformed tool calls through vLLM's qwen3 parser, 4 to 10 steps and 22 to 62 seconds per task; one task passed the grader but hit the step cap re-verifying edge cases. The README says the set is now too easy to separate strong models, and harder tasks with pass@3 are the next step.</li>
             </ul>
           </div>
         </a>

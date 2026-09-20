@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#14203a"/></linearGradient>
+    <marker id="m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#cbd5e1"/></marker>
+    <marker id="mA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#fbbf24"/></marker>
+    <marker id="mT" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2dd4bf"/></marker>
+    <marker id="mP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f472b6"/></marker>
+  </defs>
+  <rect width="960" height="540" rx="16" fill="url(#bg)"/>
+  <text x="32" y="44" fill="#f8fafc" font-size="26" font-weight="800">Coding agent harness</text>
+  <text x="32" y="68" fill="#94a3b8" font-size="14">an open model works through terminal tasks inside a sandbox, one tool call at a time, and a test script in the same sandbox grades the result</text>
+
+  <!-- TASK -->
+  <g>
+    <rect x="32" y="120" width="170" height="130" rx="12" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+    <text x="48" y="146" fill="#94a3b8" font-size="11" font-weight="700" letter-spacing="1">TASK</text>
+    <text x="48" y="170" fill="#e2e8f0" font-size="12" font-family="Menlo, Consolas, monospace">instruction.md</text>
+    <text x="48" y="188" fill="#e2e8f0" font-size="12" font-family="Menlo, Consolas, monospace">environment/</text>
+    <text x="48" y="206" fill="#e2e8f0" font-size="12" font-family="Menlo, Consolas, monospace">tests/test.sh</text>
+    <text x="48" y="224" fill="#e2e8f0" font-size="12" font-family="Menlo, Consolas, monospace">solution/solve.sh</text>
+    <text x="117" y="272" fill="#cbd5e1" font-size="12" text-anchor="middle">Terminal-Bench / Harbor layout</text>
+  </g>
+  <line x1="204" y1="185" x2="232" y2="185" stroke="#cbd5e1" stroke-width="2.5" marker-end="url(#m)"/>
+
+  <!-- AGENT -->
+  <g>
+    <circle cx="296" cy="185" r="56" fill="#0f2a2a" stroke="#2dd4bf" stroke-width="2.5"/>
+    <line x1="296" y1="154" x2="296" y2="142" stroke="#2dd4bf" stroke-width="3"/><circle cx="296" cy="139" r="4.5" fill="#2dd4bf"/>
+    <rect x="268" y="154" width="56" height="44" rx="11" fill="#134e4a" stroke="#2dd4bf" stroke-width="2"/>
+    <circle cx="284" cy="173" r="5.5" fill="#5eead4"/><circle cx="308" cy="173" r="5.5" fill="#5eead4"/>
+    <rect x="284" y="185" width="24" height="4.5" rx="2" fill="#5eead4"/>
+    <text x="296" y="118" fill="#99f6e4" font-size="14" text-anchor="middle" font-weight="700">agent loop</text>
+    <text x="296" y="262" fill="#5eead4" font-size="12" text-anchor="middle">Qwen3.8-27B, streaming</text>
+    <text x="296" y="278" fill="#94a3b8" font-size="12" text-anchor="middle">structured tool calls</text>
+  </g>
+
+  <!-- tool arrows -->
+  <line x1="358" y1="168" x2="494" y2="168" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#mA)"/>
+  <line x1="494" y1="202" x2="358" y2="202" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#mA)"/>
+  <text x="426" y="158" fill="#fde68a" font-size="10" text-anchor="middle">bash · read · write · edit</text>
+  <text x="426" y="220" fill="#fde68a" font-size="10" text-anchor="middle">output (truncated)</text>
+
+  <!-- SANDBOX -->
+  <g>
+    <rect x="500" y="108" width="262" height="160" rx="12" fill="#2a1f0a" stroke="#fbbf24" stroke-width="2"/>
+    <text x="516" y="134" fill="#fbbf24" font-size="11" font-weight="700" letter-spacing="1">DOCKER SANDBOX</text>
+    <!-- container icon: box with whale-ish stack -->
+    <rect x="690" y="122" width="16" height="12" rx="2" fill="#fde68a"/><rect x="708" y="122" width="16" height="12" rx="2" fill="#fde68a"/><rect x="726" y="122" width="16" height="12" rx="2" fill="#fde68a"/>
+    <rect x="699" y="136" width="16" height="12" rx="2" fill="#fde68a"/><rect x="717" y="136" width="16" height="12" rx="2" fill="#fde68a"/>
+    <text x="516" y="162" fill="#fef3c7" font-size="12" font-family="Menlo, Consolas, monospace">2 CPU · 2 GB · no network</text>
+    <text x="516" y="182" fill="#cbd5e1" font-size="12">fresh container per run, cwd persists</text>
+    <text x="516" y="200" fill="#cbd5e1" font-size="12">across bash calls, files persist across</text>
+    <text x="516" y="218" fill="#cbd5e1" font-size="12">messages in a session</text>
+    <text x="516" y="250" fill="#94a3b8" font-size="11">also: E2B microVMs · local (debug only)</text>
+  </g>
+
+  <!-- finish -> grade -->
+  <line x1="627" y1="272" x2="627" y2="330" stroke="#f472b6" stroke-width="2.5" marker-end="url(#mP)"/>
+  <text x="640" y="304" fill="#f9a8d4" font-size="11">agent calls finish</text>
+
+  <!-- GRADER -->
+  <g>
+    <rect x="492" y="334" width="270" height="86" rx="12" fill="#3f1d2e" stroke="#f472b6" stroke-width="2"/>
+    <text x="508" y="358" fill="#f472b6" font-size="11" font-weight="700" letter-spacing="1">GRADE, IN THE SAME SANDBOX</text>
+    <text x="508" y="380" fill="#fce7f3" font-size="12" font-family="Menlo, Consolas, monospace">tests/test.sh → reward 0 / 1</text>
+    <text x="508" y="402" fill="#fbcfe8" font-size="12">validated: oracle passes, no-op fails</text>
+    <circle cx="738" cy="360" r="14" fill="#10b981"/><path d="M731,360 l5,5 l10,-10" fill="none" stroke="#052e16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- CONSOLE -->
+  <g>
+    <rect x="782" y="108" width="146" height="312" rx="12" fill="#132238" stroke="#1e3a5f"/>
+    <text x="798" y="134" fill="#38bdf8" font-size="11" font-weight="700" letter-spacing="1">LIVE CONSOLE</text>
+    <rect x="798" y="148" width="114" height="60" rx="6" fill="#0f172a" stroke="#1e3a5f"/>
+    <rect x="806" y="156" width="70" height="6" rx="2" fill="#fde68a"/><rect x="806" y="168" width="98" height="6" rx="2" fill="#334155"/><rect x="806" y="180" width="84" height="6" rx="2" fill="#5eead4"/><rect x="806" y="192" width="60" height="6" rx="2" fill="#334155"/>
+    <text x="798" y="232" fill="#f8fafc" font-size="12" font-weight="700">Run</text>
+    <text x="798" y="248" fill="#94a3b8" font-size="11">one task, graded, live</text>
+    <text x="798" y="272" fill="#f8fafc" font-size="12" font-weight="700">Session</text>
+    <text x="798" y="288" fill="#94a3b8" font-size="11">chat with a persistent</text>
+    <text x="798" y="302" fill="#94a3b8" font-size="11">sandbox</text>
+    <text x="798" y="326" fill="#f8fafc" font-size="12" font-weight="700">Past runs</text>
+    <text x="798" y="342" fill="#94a3b8" font-size="11">every transcript</text>
+    <text x="798" y="372" fill="#cbd5e1" font-size="11">thinking in gold, files and</text>
+    <text x="798" y="386" fill="#cbd5e1" font-size="11">commands typing out as</text>
+    <text x="798" y="400" fill="#cbd5e1" font-size="11">the model writes them</text>
+  </g>
+
+  <!-- RESULTS -->
+  <g>
+    <rect x="32" y="334" width="440" height="86" rx="12" fill="#132238" stroke="#1e3a5f"/>
+    <text x="48" y="358" fill="#38bdf8" font-size="11" font-weight="700" letter-spacing="1">FIRST RUN · Qwen3.8-27B · thinking off · 1 attempt</text>
+    <text x="48" y="392" fill="#f8fafc" font-size="22" font-weight="800">12 / 12</text>
+    <text x="150" y="378" fill="#cbd5e1" font-size="11">graded tasks, easy to hard · 0 malformed tool calls</text>
+    <text x="150" y="394" fill="#cbd5e1" font-size="11">4–10 steps and 22–62 s per task</text>
+    <text x="150" y="410" fill="#94a3b8" font-size="11">stated: the set is too easy to separate strong models</text>
+    
+  </g>
+
+  <!-- footer task strip -->
+  <text x="32" y="458" fill="#e2e8f0" font-size="13" font-weight="600">The twelve tasks</text>
+  <g font-size="11" fill="#cbd5e1">
+    <rect x="32" y="468" width="896" height="54" rx="8" fill="#0f172a" stroke="#1e3a5f"/>
+    <text x="48" y="488">fix failing tests · build a wc clone · CSV → JSON report · log analysis in bash · organise files · git branch / merge / tag</text>
+    <text x="48" y="508">SQLite exploration · offline package install · refactor a monolith · fix a parser crash · Makefile + C under -Wall -Werror · 6 bugs in an HTTP API</text>
+  </g>
+</svg>
