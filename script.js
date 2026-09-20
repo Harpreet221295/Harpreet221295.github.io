@@ -1,10 +1,10 @@
 // ===== TYPEWRITER =====
 const phrases = [
   "LLM Engineer",
-  "RAG Architect",
-  "Agentic AI Builder",
-  "Research Scholar",
-  "Multimodal ML"
+  "Multi-Agent Systems",
+  "LLM Post-Training",
+  "Inference Engineering",
+  "Speech & Voice AI"
 ];
 let phraseIdx = 0, charIdx = 0, deleting = false;
 const el = document.getElementById('typewriter');

@@ -16,7 +16,6 @@
     <div class="nav-inner">
       <span class="nav-logo">HS</span>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -39,8 +38,9 @@
         <span class="hero-typewriter" id="typewriter"></span>
       </div>
       <p class="hero-bio">
-        LLM Engineer building agentic systems, multimodal models, and RAG pipelines.<br/>
-        MS Computer Science @ UCSD &bull; IIT-BHU
+        I build production multi-agent LLM systems, post-train open-weight models to
+        replace frontier APIs, and tune the inference stack that serves them.<br/>
+        MS Computer Science @ UCSD &bull; IIT (BHU) Varanasi
       </p>
       <div class="hero-links">
         <a href="mailto:harpreet22happy@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> Email</a>
@@ -53,8 +53,8 @@
         <div class="code-block">
           <span class="code-comment"># current focus</span><br/>
           <span class="code-key">role</span> <span class="code-op">=</span> <span class="code-str">"Gen AI Engineer"</span><br/>
-          <span class="code-key">stack</span> <span class="code-op">=</span> [<span class="code-str">"LLMs"</span>, <span class="code-str">"RAG"</span>, <span class="code-str">"Agents"</span>]<br/>
-          <span class="code-key">location</span> <span class="code-op">=</span> <span class="code-str">"United States"</span>
+          <span class="code-key">focus</span> <span class="code-op">=</span> [<span class="code-str">"agents"</span>, <span class="code-str">"post-training"</span>, <span class="code-str">"inference"</span>]<br/>
+          <span class="code-key">location</span> <span class="code-op">=</span> <span class="code-str">"SF Bay Area"</span>
         </div>
       </div>
     </div>
@@ -74,19 +74,24 @@
                 <h3>Generative AI (LLM) Engineer</h3>
                 <span class="company">Vagaro</span>
               </div>
-              <span class="date">July 2024 – Present &nbsp;|&nbsp; United States</span>
+              <span class="date">July 2024 – Present &nbsp;|&nbsp; Pleasanton, California</span>
             </div>
             <ul>
-              <li>Built LLM-based ETL pipelines to extract insights from customer support calls — issues, agent performance, upsell opportunities, cancellation intents.</li>
-              <li>Researched semi-supervised hierarchical clustering with LLMs; created novel pipeline for dynamically generating cancellation intent categories.</li>
-              <li>Trained and benchmarked NER models from HuggingFace vs. Microsoft Presidio for PII detection in call transcripts.</li>
-              <li>Built Agentic RAG + SQL framework generating personalized upselling pitches for Vagaro's premium features.</li>
-              <li>Working on <strong>Vagaro Connect AI</strong> — multi-agent chatbot for managing appointments, queries, and scheduling.</li>
+              <li><strong>Vera AI — production multi-LLM agentic system, built from scratch.</strong> Ran requirements analysis across teams and designed a hierarchical supervisor–subagent architecture in LangGraph, each domain agent owning its own tool pool, prompt and conversational contract — chosen over a single agent to keep 30+ tools and their deterministic post-action workflows tractable.</li>
+              <li><strong>The reusable agent infrastructure the rest of the team builds on:</strong> shared state-management protocols and context-engineering utilities, agent/tool abstractions, deterministic post-action hooks, Redis-backed conversation state, pattern-derived guardrails with retry for malformed function calls, and a configuration scheme gating which agents are exposed by region, country or user. Tool calling was developed and tested in a sandboxed API environment, then deployed to production.</li>
+              <li><strong>Customer-support subagent — ReAct-style Agentic RAG</strong> over 1,500+ HTML support articles: HTML normalization, overlapping chunking, metadata-preserving indexing and hybrid BM25 + vector retrieval, with answers required to cite the source article, deep links and YouTube URLs. Shipped as a FastAPI service on Azure App Service.</li>
+              <li><strong>Agent evaluation framework</strong> — single-turn and multi-turn tracks over one metric set: verifiable retrieval and citation Precision/Recall/F1, LLM-as-a-Judge for response-level correctness, Agent-as-a-Judge for trajectory-level scoring of whole sessions, and a persona-conditioned LLM-simulated user (30 situations drawn from real call data, six personas, a 15-turn budget) that produces the multi-turn conversations single-turn QA cannot reach. Later adapted by other engineers for the remaining agents.</li>
+              <li><strong>Multi-agent deep research service</strong> — a LangGraph system orchestrating query rewriting, web search, content extraction, evidence distillation, reflection, research planning and report generation into Pydantic schema-driven JSON, with an iterative plan–search–reflect loop under configurable depth and early stopping, and dynamic map-reduce fan-out to N parallel section-writer subagents. Productionized into Salesforce lead enrichment.</li>
+              <li><strong>Real-time voice agent</strong> — built the voice layer that took <strong>Connect AI</strong>, Vagaro's customer-facing multi-agent assistant, from chat to live telephony: an event-driven Voice Gateway coordinating Twilio, Azure Voice Live and streaming TTS, with Silero VAD turn detection, barge-in handling, dead-air monitoring and a finite-state machine relaying thinking cues during long agent and tool calls — built to reduce perceived latency. Business APIs exposed to the agents as tools over MCP.</li>
+              <li><strong>Call Insights extraction using LLMs</strong> — 11 schema-constrained extraction tasks over customer support and sales call transcripts (cancellation intent, competitor mentions, feature requests, upsell signals), with output contracts and per-task eval metrics agreed across six cross-functional teams. Fine-tuned one LoRA adapter per task on IBM Granite 3.3 8B and served them multi-LoRA on vLLM at ~700–800 requests/hour, replacing frontier-API calls.</li>
+              <li><strong>Inference tuning for that stack:</strong> characterized the real workload first — aggregate rate, skewed per-task distribution, batch bursts under a one-hour SLA, mixed output lengths — then quantized to W8A8 int8 (SmoothQuant + GPTQ via LLM Compressor) calibrated on real production prompts, and tuned continuous batching, FP8 KV cache, chunked prefill and the batched-token budget against it rather than against defaults. Constrained decoding with xgrammar over each task's JSON schema; throughput/latency benchmarking drove GPU selection.</li>
             </ul>
             <div class="tech-tags">
-              <span>Python</span><span>PyTorch</span><span>PySpark</span><span>HuggingFace</span>
-              <span>Azure OpenAI</span><span>LangChain</span><span>LangGraph</span><span>ChromaDB</span>
-              <span>Azure Synapse</span>
+              <span>Python</span><span>LangGraph</span><span>LangChain</span><span>MCP</span><span>Pydantic</span>
+              <span>Redis</span><span>FastAPI</span><span>vLLM</span><span>PEFT/LoRA</span><span>TRL</span>
+              <span>Unsloth</span><span>LLM Compressor</span><span>xgrammar</span><span>BM25</span><span>vector search</span>
+              <span>Tavily</span><span>Firecrawl</span><span>Twilio</span><span>Azure Voice Live</span><span>ElevenLabs</span>
+              <span>Azure OpenAI</span><span>Microsoft Fabric</span>
             </div>
           </div>
         </div>
@@ -96,20 +101,23 @@
           <div class="timeline-card">
             <div class="card-header">
               <div>
-                <h3>ML Engineer — Generative AI / LLMs</h3>
+                <h3>ML Engineer — Multimodal / Large Language Models</h3>
                 <span class="company">Symbl.ai</span>
               </div>
-              <span class="date">Mar 2024 – Jul 2024 &nbsp;|&nbsp; United States</span>
+              <span class="date">Mar 2024 – July 2024 &nbsp;|&nbsp; Remote, United States</span>
             </div>
             <ul>
-              <li><strong>Unified Large Multimodal Model:</strong> Designed & deployed a model encoding audio + text prompts to generate text responses across ASR, QA, diarization, summarization, and emotion/gender recognition — no intermediate transcription required.</li>
-              <li>Proposed architectural innovations to extend context length beyond Whisper's 30s limit to ~30 minutes using novel encoder designs.</li>
-              <li>Curated terabytes of speech + text datasets across 8+ tasks; trained on 8×A100 (80GB) GPU clusters using Accelerate + DeepSpeed.</li>
-              <li><strong>Sliding Window Attention:</strong> Implemented attention-sink-based sliding window in Llama 7B and Phi to increase inference context length.</li>
+              <li><strong>Long-context multimodal audio language model</strong> — extended SALMONN (frozen Whisper-Large-v2 + BEATs encoders, window-level Q-Former connector, Vicuna-13B backbone) from a 30-second to a 5-minute audio context.</li>
+              <li>Trained only the cross-modal connector — Q-Former, learned query tokens, projection into the LM embedding space — alongside LoRA adapters on the frozen 13B backbone.</li>
+              <li>Implemented the training stack on HuggingFace Accelerate + DeepSpeed, running distributed data-parallel training across 8×A100-80GB with FP16 mixed precision and gradient accumulation.</li>
+              <li>Built the training dataset from SPGISpeech, GigaSpeech, LibriSpeech and AMI — a deliberate mix of clip durations, instruction labels synthesized with Llama 3 70B, and recording-level splits to prevent leakage.</li>
+              <li>Instruction-tuned transcription, audio QA, speaker gender classification, meeting summarization and action-item extraction; diagnosed cross-task degradation from catastrophic forgetting and recovered it by warm-starting from the ASR-trained checkpoint and continuing on mixed multi-task data.</li>
+              <li>Implemented attention-sink based sliding-window attention in Llama-7B and Phi to extend usable input context at inference time without retraining, and measured the quality degradation it introduced as context grew.</li>
             </ul>
             <div class="tech-tags">
-              <span>HuggingFace</span><span>DeepSpeed</span><span>Accelerate</span><span>LangChain</span>
-              <span>TensorRT-LLM</span><span>Triton</span><span>GCP</span><span>FastAPI</span>
+              <span>PyTorch</span><span>HuggingFace</span><span>peft</span><span>Accelerate</span><span>DeepSpeed</span>
+              <span>Whisper-Large-v2</span><span>BEATs</span><span>Q-Former</span><span>Vicuna-13B</span>
+              <span>Llama 3 70B</span><span>FlashAttention-2</span><span>vLLM</span><span>GCP</span><span>FastAPI</span>
             </div>
           </div>
         </div>
@@ -119,39 +127,19 @@
           <div class="timeline-card">
             <div class="card-header">
               <div>
-                <h3>Visiting Research Scholar — Gen AI / LLMs</h3>
+                <h3>Visiting Research Scholar</h3>
                 <span class="company">Julian McAuley's Lab, UC San Diego</span>
               </div>
-              <span class="date">2023 – 2024 &nbsp;|&nbsp; United States</span>
+              <span class="date">2023 – 2024 &nbsp;|&nbsp; San Diego, California</span>
             </div>
             <ul>
-              <li>Built a RAG model for next-item recommendation, retrieving from vector DBs using user's past interactions.</li>
-              <li>Trained dual-encoder (retriever) and cross-encoder (re-ranker) using contrastive learning and knowledge distillation.</li>
-              <li>Fine-tuned Llama 7B with LoRA to generate personalized item titles based on user history.</li>
+              <li>Built a RAG pipeline for next-item recommendation, retrieving from vector stores using a user's past interactions.</li>
+              <li>Trained dual-encoder (retriever) and cross-encoder (re-ranker) models using contrastive learning and knowledge distillation.</li>
+              <li>Fine-tuned Llama-7B with LoRA to generate user-personalized titles for recommended items, conditioned on past-item interactions and item descriptions.</li>
             </ul>
             <div class="tech-tags">
-              <span>Python</span><span>LangChain</span><span>HuggingFace</span><span>PEFT / LoRA</span>
-              <span>RAG</span><span>FAISS</span><span>Recommendation Systems</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-in">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="card-header">
-              <div>
-                <h3>ML Associate</h3>
-                <span class="company">Robert Bosch Centre for Data Science & AI</span>
-              </div>
-              <span class="date">2020 – 2021 &nbsp;|&nbsp; India</span>
-            </div>
-            <ul>
-              <li>Built an image ranking model using statistical ranking algorithms after stakeholder requirement analysis.</li>
-              <li>Created scalable ETL pipeline with AWS Glue + PySpark; containerized with Docker; CI/CD on Amazon EC2 via Airflow.</li>
-            </ul>
-            <div class="tech-tags">
-              <span>Python</span><span>AWS</span><span>Docker</span><span>Airflow</span><span>PySpark</span>
+              <span>Python</span><span>PyTorch</span><span>HuggingFace</span><span>peft</span>
+              <span>LangChain</span><span>RAG</span><span>Retrieval</span><span>Recommendation</span>
             </div>
           </div>
         </div>
@@ -162,16 +150,13 @@
             <div class="card-header">
               <div>
                 <h3>AI Engineer</h3>
-                <span class="company">Medical Intelligence & Language Engineering Lab, IISc</span>
+                <span class="company">Medical Intelligence &amp; Language Engineering Lab, IISc</span>
               </div>
-              <span class="date">2019 – 2020 &nbsp;|&nbsp; India</span>
+              <span class="date">2019 – 2020 &nbsp;|&nbsp; Bangalore, India</span>
             </div>
             <ul>
-              <li>Developed & deployed a Deep-CNN facial emotion detection web app with DBSCAN post-processing; deployed on Azure Kubernetes Service.</li>
+              <li>Built a Deep-CNN facial emotion detection service with a video inference pipeline and DBSCAN post-processing, producing per-subject facial emotion timelines across a video.</li>
             </ul>
-            <div class="tech-tags">
-              <span>PyTorch</span><span>TensorFlow</span><span>Docker</span><span>Azure</span><span>Kubernetes</span>
-            </div>
           </div>
         </div>
 
@@ -181,16 +166,13 @@
             <div class="card-header">
               <div>
                 <h3>Applications Engineer</h3>
-                <span class="company">Oracle India</span>
+                <span class="company">Oracle India Private Ltd.</span>
               </div>
-              <span class="date">2018 – 2019 &nbsp;|&nbsp; India</span>
+              <span class="date">2018 – 2019 &nbsp;|&nbsp; Bangalore, India</span>
             </div>
             <ul>
-              <li>Created Map components for Hybrid Mobile Application Development; UI Development for Exascale Cloud.</li>
+              <li>Integrated map components into the CX Cloud hybrid mobile application; UI development for Exascale Cloud.</li>
             </ul>
-            <div class="tech-tags">
-              <span>JavaScript</span><span>Mobile</span><span>Cloud UI</span>
-            </div>
           </div>
         </div>
 
@@ -208,19 +190,19 @@
           <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
           <div class="edu-body">
             <h3>University of California, San Diego (UCSD)</h3>
-            <p class="edu-degree">M.S. Computer Science &nbsp;&bull;&nbsp; GPA: 3.96 / 4.00</p>
+            <p class="edu-degree">Master of Science in Computer Science &nbsp;&bull;&nbsp; GPA: 3.96 / 4.00</p>
             <p class="edu-meta">2021 – 2023 &nbsp;|&nbsp; San Diego, California</p>
-            <p class="edu-courses"><strong>Coursework:</strong> Advanced NLP, Recommender Systems, Advanced CV, Search Optimization (RL)</p>
+            <p class="edu-courses"><strong>Coursework:</strong> Advanced NLP, Recommender Systems, Advanced Computer Vision, Search &amp; Optimization (Reinforcement Learning)</p>
           </div>
         </div>
 
         <div class="edu-card fade-in">
           <div class="edu-icon"><i class="fas fa-university"></i></div>
           <div class="edu-body">
-            <h3>IIT (BHU) Varanasi</h3>
-            <p class="edu-degree">B.Tech (Honours) Computer Science &nbsp;&bull;&nbsp; GPA: 9.08 / 10</p>
+            <h3>Indian Institute of Technology (IIT-BHU) Varanasi</h3>
+            <p class="edu-degree">B.Tech (Honours), Computer Science and Engineering &nbsp;&bull;&nbsp; GPA: 9.08 / 10</p>
             <p class="edu-meta">2014 – 2018 &nbsp;|&nbsp; Varanasi, India</p>
-            <p class="edu-courses"><strong>Coursework:</strong> Software Engineering, Data Structures, Algorithms, Parallel & Distributed Computing, ML</p>
+            <p class="edu-courses"><strong>Coursework:</strong> Software Engineering, Data Structures, Algorithms, Parallel and Distributed Computing, Machine Learning</p>
           </div>
         </div>
 
@@ -237,34 +219,60 @@
         <div class="skill-group fade-in">
           <h4><i class="fas fa-code"></i> Languages</h4>
           <div class="skill-tags">
-            <span>Python</span><span>C++</span><span>C</span><span>Java</span>
-            <span>JavaScript</span><span>MATLAB</span>
+            <span>Python</span><span>C++</span><span>Bash</span>
           </div>
         </div>
 
         <div class="skill-group fade-in">
-          <h4><i class="fas fa-brain"></i> AI / ML</h4>
+          <h4><i class="fas fa-fire"></i> LLM Post-Training</h4>
           <div class="skill-tags">
-            <span>PyTorch</span><span>TensorFlow</span><span>HuggingFace</span><span>PEFT</span>
-            <span>DeepSpeed</span><span>Accelerate</span><span>LangChain</span><span>LangGraph</span>
-            <span>spaCy</span><span>NLTK</span><span>torchtext</span>
+            <span>PyTorch</span><span>HuggingFace Transformers</span><span>TRL</span><span>PEFT / LoRA</span>
+            <span>Unsloth</span><span>DeepSpeed</span><span>Accelerate</span><span>PyTorch DDP</span>
+            <span>FlashAttention-2</span>
           </div>
         </div>
 
         <div class="skill-group fade-in">
-          <h4><i class="fas fa-database"></i> Data & Vector DBs</h4>
+          <h4><i class="fas fa-gauge-high"></i> Inference &amp; Serving</h4>
           <div class="skill-tags">
-            <span>ChromaDB</span><span>FAISS</span><span>PySpark</span>
-            <span>MySQL</span><span>Airflow</span>
+            <span>vLLM</span><span>SGLang</span><span>multi-LoRA serving</span><span>continuous batching</span>
+            <span>LLM Compressor</span><span>SmoothQuant</span><span>GPTQ</span><span>AWQ</span>
+            <span>W8A8 int8</span><span>FP8 KV cache</span><span>chunked prefill</span><span>xgrammar</span>
           </div>
         </div>
 
         <div class="skill-group fade-in">
-          <h4><i class="fas fa-cloud"></i> Cloud & DevOps</h4>
+          <h4><i class="fas fa-diagram-project"></i> Agents, RAG &amp; Evals</h4>
           <div class="skill-tags">
-            <span>Azure</span><span>Azure OpenAI</span><span>Azure Synapse</span>
-            <span>Azure ML Studio</span><span>GCP</span><span>AWS</span>
-            <span>Docker</span><span>Kubernetes</span><span>Git</span>
+            <span>LangGraph</span><span>LangChain</span><span>MCP</span><span>Pydantic</span>
+            <span>BM25</span><span>vector search</span><span>ChromaDB</span><span>FAISS</span>
+            <span>Tavily</span><span>Firecrawl</span><span>LLM-as-a-Judge</span><span>Agent-as-a-Judge</span>
+            <span>LLM-simulated users</span>
+          </div>
+        </div>
+
+        <div class="skill-group fade-in">
+          <h4><i class="fas fa-microphone-lines"></i> Speech &amp; Voice</h4>
+          <div class="skill-tags">
+            <span>Whisper-Large-v2</span><span>BEATs</span><span>Q-Former</span><span>Silero VAD</span>
+            <span>Azure Voice Live</span><span>ElevenLabs TTS</span><span>Azure TTS</span>
+            <span>Twilio</span><span>WebSockets</span>
+          </div>
+        </div>
+
+        <div class="skill-group fade-in">
+          <h4><i class="fas fa-brain"></i> Models</h4>
+          <div class="skill-tags">
+            <span>IBM Granite 3.3 8B</span><span>Llama</span><span>Phi</span><span>Vicuna-13B</span>
+            <span>BART / BERT</span>
+          </div>
+        </div>
+
+        <div class="skill-group fade-in">
+          <h4><i class="fas fa-cloud"></i> Infra &amp; Cloud</h4>
+          <div class="skill-tags">
+            <span>Azure</span><span>Microsoft Fabric</span><span>GCP</span><span>AWS</span>
+            <span>FastAPI</span><span>Redis</span><span>PySpark</span><span>Docker</span><span>Git</span>
           </div>
         </div>
 
@@ -282,13 +290,10 @@
           <h3>"Medical Question Understanding and Answering with Knowledge Grounding and Semantic Self-Supervision"</h3>
           <p class="pub-authors">Mrini, K., <strong>Singh, H.</strong>, et al. &mdash; 29th International Conference on Computational Linguistics (COLING), 2022</p>
           <ul>
-            <li>Built a retrieval pipeline to select relevant answer sentences from a medical knowledge base.</li>
-            <li>Proposed two novel self-supervised loss functions to train BART-large for retrieval and sentence selection.</li>
-            <li>Outperformed baselines (DPR, GAR) on ROUGE and Human Judgement metrics.</li>
+            <li>Built a retrieval pipeline over a medical knowledge base and proposed two novel self-supervised loss functions training BART-large for answer-sentence retrieval and selection, beating DPR and GAR baselines on ROUGE and human judgement.</li>
           </ul>
           <div class="tech-tags">
-            <span>NLP</span><span>QA</span><span>BERT</span><span>BART</span><span>FAISS</span>
-            <span>Self-Supervised Learning</span><span>Transformers</span>
+            <span>BART-large</span><span>Self-Supervised Learning</span><span>Retrieval</span><span>Medical QA</span>
           </div>
         </div>
       </div>
@@ -299,69 +304,159 @@
   <section id="projects" class="section">
     <div class="container">
       <h2 class="section-title fade-in">Projects</h2>
-      <div class="projects-grid">
 
-        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Path-planning-using-voronoi-diagrams-for-JetBot" target="_blank">
-          <div class="project-top">
-            <i class="fas fa-folder-open"></i>
-            <i class="fab fa-github project-gh"></i>
+        <!-- FEATURED: CiteSearch-RL -->
+        <a class="project-featured fade-in" href="https://github.com/Harpreet221295/citesearch-rl" target="_blank">
+          <div class="featured-side">
+            <div class="featured-shot">
+              <img src="assets/figures/hero.svg"
+                   alt="CiteSearch-RL: a question goes to a 3B agent, which loops through search, read and think over an offline corpus, then answers with citations; the reward drives a GRPO update" loading="lazy" />
+            </div>
+
+            <div class="featured-stats">
+              <span><b>0% &rarr; 30.7%</b> correct &amp; properly cited</span>
+              <span><b>0.003 &rarr; 0.81</b> read-before-cite</span>
+              <span><b>+4.0 pts</b> correct on unseen MuSiQue</span>
+              <span><b>4,000</b> teacher episodes, $8.88</span>
+              <span><b>93</b> offline tests</span>
+              <span><b>1&times;</b> A100</span>
+            </div>
+
+            <div class="tech-tags">
+              <span>Qwen2.5-3B</span><span>LoRA</span><span>GRPO</span><span>rLLM</span><span>veRL</span><span>vLLM</span>
+              <span>SFT distillation</span><span>HotpotQA</span><span>2Wiki</span><span>MuSiQue</span><span>W&amp;B</span>
+            </div>
           </div>
-          <h3>Path Planning with Voronoi Diagrams for JetBot</h3>
-          <p>Autonomous robot path planning using Voronoi diagrams for obstacle avoidance on JetBot.</p>
-          <span class="project-lang">Jupyter Notebook</span>
+          <div class="featured-body">
+            <div class="featured-head">
+              <div>
+                <span class="featured-flag">Open source &bull; MIT &bull; agentic RL</span>
+                <h3>CiteSearch-RL</h3>
+                <p class="featured-tagline">A 3B open model that searches, reads, and cites its sources &mdash; trained with reinforcement learning.</p>
+              </div>
+              <i class="fab fa-github featured-gh"></i>
+            </div>
+
+            <p class="featured-lede">
+              Hosted deep-research products push every turn of the research loop through a frontier API, and at volume
+              that is the cost. This project asks whether a small open model can be <strong>trained</strong> to run the same
+              multi-turn ReAct loop instead: search a corpus, read what it found, search again, and commit to an answer that
+              cites only passages it actually read. Two stages &mdash; distillation from <code>gpt-4.1-mini</code> acting as
+              the policy inside the real environment, then GRPO with rLLM + veRL on a single A100 &mdash; and every number
+              reported on frozen held-out and out-of-distribution sets with confidence intervals.
+            </p>
+
+            <ul class="featured-points">
+              <li><strong>Reward gated on evidence, not just answers.</strong> A citation counts only if the passage is gold <em>and</em> the agent called <code>read</code> on it; no citations means zero reward; fabricated citations are penalised separately. A right answer with no evidence trail is treated as a lucky guess.</li>
+              <li><strong>Teacher distillation done the safe way.</strong> The teacher is not asked to write trajectories &mdash; it is dropped in as the policy of the same environment, so every observation is real and every episode is graded by the same code as the student. A non-reasoning teacher, chosen so a 3B student is not taught to start chains it cannot finish.</li>
+              <li><strong>The skeptic's control is in the table.</strong> Three arms everywhere: base, base with a worked example in the prompt, and tuned. Prompting alone gets most of the raw correctness; what SFT adds that prompting cannot is the process &mdash; read-before-cite 0.198 &rarr; 0.810.</li>
+              <li><strong>RL taught a process that generalises.</strong> On the in-distribution held-out set the RL gain is inside the noise, and the card says so. On MuSiQue, never trained on, it is +4.0 correct and &minus;8.7 points of stuck episodes, both significant, with reads up and searches down at constant turns.</li>
+              <li><strong>Built like a system.</strong> A frozen split registry asserted disjoint, batched vLLM evaluation with LoRA hot-swap, checkpoints and optimiser state mirrored to the Hub, a pinned rLLM/veRL/vLLM stack with each install bug documented, and a 24-item findings register that keeps the hypotheses that were killed by data.</li>
+            </ul>
+          </div>
         </a>
 
-        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Bayesian-Networks-for-Genetic-Inheritance" target="_blank">
-          <div class="project-top">
-            <i class="fas fa-folder-open"></i>
-            <i class="fab fa-github project-gh"></i>
+        <!-- FEATURED: Post-training labs -->
+        <a class="project-featured fade-in" href="https://github.com/Harpreet221295/post-training-labs" target="_blank">
+          <div class="featured-side">
+            <div class="featured-shot">
+              <img src="assets/figures/labs_stack.svg"
+                   alt="Six labs in order: PPO, SFT, DPO/SimPO/KTO, RLVR, on-policy distillation, agent trajectory synthesis, each with its headline number" loading="lazy" />
+            </div>
+
+            <div class="featured-stats">
+              <span><b>6</b> labs, in stack order</span>
+              <span><b>6</b> hand-written objectives</span>
+              <span><b>32</b> offline tests</span>
+              <span><b>2</b> negative results, reported</span>
+              <span><b>1</b> 8 GB GPU</span>
+            </div>
+
+            <div class="tech-tags">
+              <span>PyTorch</span><span>PEFT / LoRA</span><span>Qwen2.5-0.5B</span><span>GSM8K</span><span>UltraFeedback</span>
+              <span>Gymnasium</span><span>SymPy</span><span>pytest</span>
+            </div>
           </div>
-          <h3>Bayesian Networks for Genetic Inheritance</h3>
-          <p>Probabilistic graphical model for modeling and reasoning about genetic inheritance patterns.</p>
-          <span class="project-lang">MATLAB</span>
+          <div class="featured-body">
+            <div class="featured-head">
+              <div>
+                <span class="featured-flag">Open source &bull; MIT &bull; post-training</span>
+                <h3>Post-training labs</h3>
+                <p class="featured-tagline">The modern LLM post-training stack, implemented by hand and evaluated honestly.</p>
+              </div>
+              <i class="fab fa-github featured-gh"></i>
+            </div>
+
+            <p class="featured-lede">
+              Six self-contained labs that build on each other: PPO with GAE &rarr; supervised fine-tuning &rarr;
+              DPO / SimPO / KTO &rarr; RL with verifiable rewards &rarr; on-policy distillation &rarr; agent trajectory
+              synthesis. In every one, the objective, reward, advantage or masking logic is written by hand and unit-tested;
+              the data loading, training loop and evaluation gate are harness. Every lab reports base vs tuned on held-out
+              data with its noise floor, and two of the six report a negative or mixed result rather than rounding it up.
+            </p>
+
+            <ul class="featured-points">
+              <li><strong>PPO from scratch</strong> on BipedalWalker: &minus;92 &rarr; 184, stuck in a limp-gait local optimum; an entropy floor predicted from the theory and confirmed with an overlaid A/B took it to 251.</li>
+              <li><strong>SFT found a real failure a loss curve hides.</strong> Degeneration fell 10/15 &rarr; 4/15, but the model never learned to stop: the end-of-turn token is 0.7% of graded targets, so a token-averaged loss barely sees it.</li>
+              <li><strong>DPO's famous flaw, measured.</strong> Preference accuracy 0.660 with no length inflation, and the margin is <em>entirely</em> the difference-only artifact: chosen log-prob &minus;3.91, rejected &minus;7.89, margin = &beta; &times; the gap exactly.</li>
+              <li><strong>RLVR that made the model worse, and why.</strong> Below base at every pass@k; a flat solve-rate, <em>rising</em> entropy and half-dead groups together diagnose too little training signal. The verifier probe was clean; the 40% shorter outputs were a side-effect of the group-relative advantage.</li>
+              <li><strong>On-policy beats off-policy distillation</strong> 31.5% vs 27.0% from a 12.5% base on GSM8K, with the caveat stated: the gap is about one standard error at n=200.</li>
+              <li><strong>Synthesised agent data that lifts tool use 0% &rarr; 65%</strong> without demonstrations, kept honest by a grounded checker that re-executes every trajectory and a relabelling step whose share is capped and whose goal entropy is reported.</li>
+            </ul>
+          </div>
         </a>
 
-        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Emotion-Timeline-Formation-for-Each-Subject-in-a-Video" target="_blank">
-          <div class="project-top">
-            <i class="fas fa-folder-open"></i>
-            <i class="fab fa-github project-gh"></i>
+        <!-- FEATURED: ProactiveClaw -->
+        <a class="project-featured fade-in" href="https://github.com/Harpreet221295/ProactiveClaw" target="_blank">
+          <div class="featured-side">
+            <div class="featured-shot">
+              <img src="https://raw.githubusercontent.com/Harpreet221295/ProactiveClaw/main/docs/screenshot.png"
+                   alt="ProactiveClaw web interface" loading="lazy" />
+            </div>
+
+            <div class="featured-stats">
+              <span><b>64</b> agent tools</span>
+              <span><b>194</b> tests</span>
+              <span><b>5&times;5</b> levels &amp; modes</span>
+              <span><b>6</b> optional connectors</span>
+              <span><b>~15k</b> lines of Python</span>
+            </div>
+
+            <div class="tech-tags">
+              <span>Python</span><span>FastAPI</span><span>WebSockets</span><span>OpenAI</span><span>Anthropic</span>
+              <span>mem0</span><span>Kuzu</span><span>Multi-agent</span><span>pytest</span>
+            </div>
           </div>
-          <h3>Emotion Timeline for Subjects in Video</h3>
-          <p>Deep learning pipeline to track and form emotion timelines per subject across video frames.</p>
-          <span class="project-lang">Python</span>
+          <div class="featured-body">
+            <div class="featured-head">
+              <div>
+                <span class="featured-flag">Open source &bull; MIT</span>
+                <h3>ProactiveClaw</h3>
+                <p class="featured-tagline">The assistant that comes to you.</p>
+              </div>
+              <i class="fab fa-github featured-gh"></i>
+            </div>
+
+            <p class="featured-lede">
+              Most assistants wait to be asked, so the things that slip are the ones nobody asks about —
+              the email you meant to answer tonight, the &ldquo;I'll call her before Thursday&rdquo; you said out loud,
+              the task deferred three mornings running. ProactiveClaw keeps a <strong>care registry</strong> of
+              those things and tends it: every morning it expires snoozes, escalates repeated deferrals, flags
+              broken promises, writes a brief, and schedules a few specific nudges. During the day it picks up
+              commitments from ordinary conversation and closes them when you mention you're done.
+            </p>
+
+            <ul class="featured-points">
+              <li><strong>Proactiveness is a dial, not a model behaviour.</strong> Five levels from <em>off</em> to <em>max</em> and five situational modes resolve into concrete settings — and the limits (daily cap, quiet hours, spacing) are enforced in the scheduling code rather than left to the model.</li>
+              <li><strong>Deterministic housekeeping before any LLM call</strong>, so each review starts from an already-tidy, already-prioritised state.</li>
+              <li><strong>Learns from how you react.</strong> Per-sender and per-topic pattern learning with exponential decay, and a contextual bandit over day &times; hour arms that learns the times you actually reply.</li>
+              <li><strong>Two-tier memory and isolated sub-agents.</strong> Vector store plus knowledge graph with passive entity recall; long-running work dispatched to process-isolated sub-agents with scoped tool profiles.</li>
+              <li><strong>Optional by construction.</strong> Connectors are gated on config and credentials — their tools are removed from the model's tool list entirely, so it can't assume access it doesn't have.</li>
+            </ul>
+
+          </div>
         </a>
 
-        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Markov-Networks-for-Optical-Character-Recognition" target="_blank">
-          <div class="project-top">
-            <i class="fas fa-folder-open"></i>
-            <i class="fab fa-github project-gh"></i>
-          </div>
-          <h3>Markov Networks for OCR</h3>
-          <p>Applied Markov Networks for probabilistic optical character recognition tasks.</p>
-          <span class="project-lang">MATLAB</span>
-        </a>
-
-        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Titanic-Machine-Learning-from-Disaster-solution" target="_blank">
-          <div class="project-top">
-            <i class="fas fa-folder-open"></i>
-            <i class="fab fa-github project-gh"></i>
-          </div>
-          <h3>Titanic — ML from Disaster</h3>
-          <p>Kaggle competition solution for predicting survival using feature engineering and ensemble models.</p>
-          <span class="project-lang">Jupyter Notebook</span>
-        </a>
-
-        <a class="project-card fade-in" href="https://github.com/Harpreet221295/Predictive-Modeling-on-NOAA-weather-dataset" target="_blank">
-          <div class="project-top">
-            <i class="fas fa-folder-open"></i>
-            <i class="fab fa-github project-gh"></i>
-          </div>
-          <h3>Predictive Modeling on NOAA Weather</h3>
-          <p>Weather prediction models trained on NOAA dataset using regression and classification techniques.</p>
-          <span class="project-lang">Jupyter Notebook</span>
-        </a>
-
-      </div>
     </div>
   </section>
 

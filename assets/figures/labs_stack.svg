@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="560" viewBox="0 0 720 560" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#14203a"/>
+    </linearGradient>
+    <marker id="dn" viewBox="0 0 10 10" refX="5" refY="8" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,0 L5,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect width="720" height="560" rx="16" fill="url(#bg)"/>
+  <text x="32" y="44" fill="#f8fafc" font-size="22" font-weight="800">The post-training stack, by hand</text>
+  <text x="32" y="66" fill="#94a3b8" font-size="13">six labs · the objective in each is hand-written and unit-tested · one 8 GB GPU</text>
+
+  <!-- spine -->
+  <line x1="60" y1="100" x2="60" y2="520" stroke="#334155" stroke-width="2" stroke-dasharray="4 5"/>
+
+  <!-- tile template: y positions 92,164,236,308,380,452 ; height 60 -->
+  <g>
+    <circle cx="60" cy="122" r="16" fill="#0f2a2a" stroke="#2dd4bf" stroke-width="2"/><text x="60" y="127" fill="#5eead4" font-size="12" font-weight="700" text-anchor="middle">01</text>
+    <rect x="96" y="92" width="592" height="60" rx="10" fill="#132238" stroke="#1e3a5f"/>
+    <text x="112" y="116" fill="#f8fafc" font-size="14" font-weight="700">PPO + GAE from scratch</text>
+    <text x="112" y="136" fill="#94a3b8" font-size="12">BipedalWalker-v3 · clip loss, GAE, entropy bonus</text>
+    <text x="672" y="118" fill="#5eead4" font-size="16" font-weight="800" text-anchor="end">−92 → 251</text>
+    <text x="672" y="136" fill="#94a3b8" font-size="11" text-anchor="end">eval return, entropy floor A/B</text>
+  </g>
+  <g>
+    <circle cx="60" cy="194" r="16" fill="#0f2a2a" stroke="#2dd4bf" stroke-width="2"/><text x="60" y="199" fill="#5eead4" font-size="12" font-weight="700" text-anchor="middle">02</text>
+    <rect x="96" y="164" width="592" height="60" rx="10" fill="#132238" stroke="#1e3a5f"/>
+    <text x="112" y="188" fill="#f8fafc" font-size="14" font-weight="700">SFT with a hand-written masked loss</text>
+    <text x="112" y="208" fill="#94a3b8" font-size="12">base 0.5B → instruction follower · masking asserted</text>
+    <text x="672" y="190" fill="#fcd34d" font-size="16" font-weight="800" text-anchor="end">10/15 → 4/15</text>
+    <text x="672" y="208" fill="#94a3b8" font-size="11" text-anchor="end">degeneration · never learned to stop</text>
+  </g>
+  <g>
+    <circle cx="60" cy="266" r="16" fill="#0f2a2a" stroke="#2dd4bf" stroke-width="2"/><text x="60" y="271" fill="#5eead4" font-size="12" font-weight="700" text-anchor="middle">03</text>
+    <rect x="96" y="236" width="592" height="60" rx="10" fill="#132238" stroke="#1e3a5f"/>
+    <text x="112" y="260" fill="#f8fafc" font-size="14" font-weight="700">DPO · SimPO · KTO, one harness</text>
+    <text x="112" y="280" fill="#94a3b8" font-size="12">three preference losses, the loss is the only moving part</text>
+    <text x="672" y="262" fill="#5eead4" font-size="16" font-weight="800" text-anchor="end">0.660</text>
+    <text x="672" y="280" fill="#94a3b8" font-size="11" text-anchor="end">DPO pref-accuracy · degeneracy measured</text>
+  </g>
+  <g>
+    <circle cx="60" cy="338" r="16" fill="#0f2a2a" stroke="#2dd4bf" stroke-width="2"/><text x="60" y="343" fill="#5eead4" font-size="12" font-weight="700" text-anchor="middle">04</text>
+    <rect x="96" y="308" width="592" height="60" rx="10" fill="#132238" stroke="#1e3a5f"/>
+    <text x="112" y="332" fill="#f8fafc" font-size="14" font-weight="700">RLVR on GSM8K</text>
+    <text x="112" y="352" fill="#94a3b8" font-size="12">hand-written verifier + group-relative PG · pass@k</text>
+    <text x="672" y="334" fill="#fca5a5" font-size="16" font-weight="800" text-anchor="end">regression</text>
+    <text x="672" y="352" fill="#94a3b8" font-size="11" text-anchor="end">below base at every k · diagnosed</text>
+  </g>
+  <g>
+    <circle cx="60" cy="410" r="16" fill="#0f2a2a" stroke="#2dd4bf" stroke-width="2"/><text x="60" y="415" fill="#5eead4" font-size="12" font-weight="700" text-anchor="middle">05</text>
+    <rect x="96" y="380" width="592" height="60" rx="10" fill="#132238" stroke="#1e3a5f"/>
+    <text x="112" y="404" fill="#f8fafc" font-size="14" font-weight="700">On-policy distillation</text>
+    <text x="112" y="424" fill="#94a3b8" font-size="12">full-vocab forward vs reverse KL · on-policy tokens</text>
+    <text x="672" y="406" fill="#5eead4" font-size="16" font-weight="800" text-anchor="end">12.5 → 27.0 → 31.5%</text>
+    <text x="672" y="424" fill="#94a3b8" font-size="11" text-anchor="end">GSM8K · gap ≈ 1 SE</text>
+  </g>
+  <g>
+    <circle cx="60" cy="482" r="16" fill="#0f2a2a" stroke="#2dd4bf" stroke-width="2"/><text x="60" y="487" fill="#5eead4" font-size="12" font-weight="700" text-anchor="middle">06</text>
+    <rect x="96" y="452" width="592" height="60" rx="10" fill="#132238" stroke="#1e3a5f"/>
+    <text x="112" y="476" fill="#f8fafc" font-size="14" font-weight="700">Agent trajectory synthesis</text>
+    <text x="112" y="496" fill="#94a3b8" font-size="12">grounded checker · hindsight relabel · masked obs</text>
+    <text x="672" y="478" fill="#5eead4" font-size="16" font-weight="800" text-anchor="end">0% → 65%</text>
+    <text x="672" y="496" fill="#94a3b8" font-size="11" text-anchor="end">no-demo tool use · n=20</text>
+  </g>
+  <text x="360" y="544" fill="#64748b" font-size="11" text-anchor="middle">every core objective hand-written · every lab evaluated base vs tuned with its noise floor · negative results kept</text>
+</svg>
