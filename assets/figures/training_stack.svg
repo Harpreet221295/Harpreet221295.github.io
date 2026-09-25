@@ -15,8 +15,8 @@
   </defs>
 
   <rect width="960" height="620" rx="14" fill="#0b1220"/>
-  <text x="32" y="40" fill="#f8fafc" font-size="20" font-weight="700">Training stack: rLLM runs the agent, veRL runs GRPO, one A100 80 GB, colocated</text>
-  <text x="32" y="62" fill="#94a3b8" font-size="13">Per step: 32 questions × 16 rollouts = 512 episodes, ~190 s. 99 steps, ~5.2 h.</text>
+  <text x="32" y="40" fill="#f8fafc" font-size="20" font-weight="700">Training stack: rLLM runs the agent, veRL runs GRPO, 1–2 A100s, colocated</text>
+  <text x="32" y="62" fill="#94a3b8" font-size="13">Per step: 32 questions × 16 rollouts = 512 episodes. 3B: ~190 s on 1 A100 · 7B: 166 s on 2× A100 (one vLLM per GPU).</text>
   <text x="32" y="79" fill="#94a3b8" font-size="13">Checkpoints every 25 steps mirrored to the Hub; best kept by the dev metric.</text>
 
   <!-- rLLM layer -->

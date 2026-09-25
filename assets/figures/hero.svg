@@ -23,7 +23,7 @@
 
   <!-- title -->
   <text x="32" y="46" fill="#f8fafc" font-size="28" font-weight="800">CiteSearch-RL</text>
-  <text x="32" y="70" fill="#94a3b8" font-size="14">a 3B open model that searches, reads, and cites its sources · trained with reinforcement learning</text>
+  <text x="32" y="70" fill="#94a3b8" font-size="14">small open models (3B, 7B) that search, read, and cite their sources · trained with reinforcement learning</text>
 
   <!-- ===== QUESTION ===== -->
   <g>
@@ -46,7 +46,7 @@
     <rect x="256" y="256" width="28" height="5" rx="2.5" fill="#5eead4"/>
     <rect x="232" y="240" width="7" height="14" rx="2" fill="#2dd4bf"/>
     <rect x="301" y="240" width="7" height="14" rx="2" fill="#2dd4bf"/>
-    <text x="270" y="166" fill="#f8fafc" font-size="14" text-anchor="middle" font-weight="700">Qwen2.5-3B agent</text>
+    <text x="270" y="166" fill="#f8fafc" font-size="14" text-anchor="middle" font-weight="700">Qwen2.5-3B / 7B agent</text>
     <text x="270" y="184" fill="#94a3b8" font-size="12" text-anchor="middle">thinks, then picks a tool</text>
   </g>
   <line x1="332" y1="255" x2="404" y2="255" stroke="#cbd5e1" stroke-width="2.5" marker-end="url(#m)"/>
@@ -139,5 +139,5 @@
   <path d="M780,464 C 740,575 330,575 272,320" fill="none" stroke="#f472b6" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#mP)"/>
   <rect x="300" y="446" width="230" height="40" rx="8" fill="#3f1d2e" stroke="#f472b6" stroke-width="1.5"/>
   <text x="415" y="463" fill="#fbcfe8" font-size="13" text-anchor="middle" font-weight="700">GRPO update (rLLM + veRL)</text>
-  <text x="415" y="479" fill="#f9a8d4" font-size="11" text-anchor="middle">512 episodes per step · one A100</text>
+  <text x="415" y="479" fill="#f9a8d4" font-size="11" text-anchor="middle">512 episodes per step · frontier curriculum</text>
 </svg>

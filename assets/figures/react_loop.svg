@@ -19,7 +19,7 @@
   <!-- POLICY box -->
   <rect x="32" y="100" width="230" height="376" rx="12" fill="#0f2a2a" stroke="#2dd4bf" stroke-width="1.5"/>
   <text x="48" y="126" fill="#2dd4bf" font-size="12" font-weight="700" letter-spacing="1">POLICY</text>
-  <text x="48" y="150" fill="#f8fafc" font-size="15" font-weight="600">Qwen2.5-3B-Instruct</text>
+  <text x="48" y="150" fill="#f8fafc" font-size="15" font-weight="600">Qwen2.5-3B / 7B-Instruct</text>
   <text x="48" y="170" fill="#cbd5e1" font-size="13">+ LoRA (SFT r=32 merged,</text>
   <text x="48" y="188" fill="#cbd5e1" font-size="13">   RL r=16 on top)</text>
   <line x1="48" y1="204" x2="246" y2="204" stroke="#1e3a3a"/>
