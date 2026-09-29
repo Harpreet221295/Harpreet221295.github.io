@@ -322,8 +322,12 @@
                    alt="CiteSearch-RL: a question goes to a 3B or 7B agent, which loops through search, read and think over an offline corpus, then answers with citations; the reward drives a GRPO update" loading="lazy" />
             </div>
             <div class="featured-shot">
-              <img src="assets/figures/curriculum.svg"
-                   alt="Frontier curriculum: the policy answers each question 8 times, only questions it gets right 1 to 7 times are trained on, a per-question ledger retires mastered ones" loading="lazy" />
+              <img src="assets/figures/frontier_set_training.svg"
+                   alt="Frontier-set training: the policy answers each question 8 times, only questions it gets right 1 to 7 times are trained on, a per-question ledger retires mastered ones" loading="lazy" />
+            </div>
+            <div class="featured-shot">
+              <img src="assets/figures/results_7b.svg"
+                   alt="7B results: SFT, frontier RL at step 100 and stage 2 at step 200, on held-out and on MuSiQue" loading="lazy" />
             </div>
 
             <div class="featured-stats">
@@ -337,7 +341,7 @@
 
             <div class="tech-tags">
               <span>Qwen2.5-3B / 7B</span><span>LoRA</span><span>GRPO</span><span>rLLM</span><span>veRL</span><span>vLLM</span>
-              <span>Ray</span><span>FSDP</span><span>2&times; A100</span><span>SFT distillation</span><span>curriculum learning</span>
+              <span>Ray</span><span>FSDP</span><span>2&times; A100</span><span>SFT distillation</span><span>frontier-set training</span>
               <span>HotpotQA</span><span>2Wiki</span><span>MuSiQue</span><span>W&amp;B</span>
             </div>
           </div>
@@ -356,15 +360,15 @@
               that is the cost. This project asks whether small open models can be <strong>trained</strong> to run the same
               multi-turn ReAct loop instead: search a corpus, read what they found, search again, and commit to an answer that
               cites only passages they actually read. Distillation from <code>gpt-4.1-mini</code> acting as the policy inside
-              the real environment, then GRPO with rLLM + veRL on one or two A100s over a curriculum mined with the policy
-              itself. Every number is reported on frozen held-out and out-of-distribution sets, with per-question significance
+              the real environment, then GRPO with rLLM + veRL on one or two A100s with frontier-set training on questions mined
+              by the policy itself. Every number is reported on frozen held-out and out-of-distribution sets, with per-question significance
               tests and predictions written down before each run.
             </p>
 
             <ul class="featured-points">
               <li><strong>Reward gated on evidence, not just answers.</strong> A citation counts only if the passage is gold <em>and</em> the agent called <code>read</code> on it; no citations means zero reward; fabricated citations are penalised separately. A right answer with no evidence trail is treated as a lucky guess.</li>
-              <li><strong>A frontier curriculum picked by the policy, not by labels.</strong> The policy answers each question 8 times and only the ones it gets right 1 to 7 times are trained on; a per-question ledger records every outcome and retires mastered questions. Groups with zero gradient fell from about 70% to 30%, and the 7B's correct-and-cited rose <strong>+8.7 points on held-out</strong>, about 3&times; the noise floor, where a label-based &ldquo;hard&rdquo; slice had left it flat.</li>
-              <li><strong>Five RL runs on one recipe, to find out what actually moved it.</strong> A 3B control on the same curriculum improved citations and process but gained no correct answers; the 7B turned the same signal into +8.6 correct. Data selection makes the signal dense; model size decides whether it becomes right answers.</li>
+              <li><strong>Frontier-set training: questions picked by the policy, not by labels.</strong> The policy answers each question 8 times and only the ones it gets right 1 to 7 times are trained on; a per-question ledger records every outcome and retires mastered questions. Groups with zero gradient fell from about 70% to 30%, and the 7B's correct-and-cited rose <strong>+8.7 points on held-out</strong>, about 3&times; the noise floor, where a label-based &ldquo;hard&rdquo; slice had left it flat.</li>
+              <li><strong>Five RL runs on one recipe, to find out what actually moved it.</strong> A 3B control with the same frontier-set training improved citations and process but gained no correct answers; the 7B turned the same signal into +8.6 correct. Data selection makes the signal dense; model size decides whether it becomes right answers.</li>
               <li><strong>Reported both ways.</strong> A second 7B stage to 200 steps left held-out flat and missed its pre-registered prediction; it lifted unseen MuSiQue by another +5.3 (p = 0.029) by finishing multi-hop chains instead of stopping one hop early. Both results are on the card and in the report.</li>
               <li><strong>Built like a system.</strong> A FrontierSampler installed into veRL through a Ray worker hook, data-parallel vLLM inference across GPUs, three framework-level multi-GPU bugs root-caused in veRL and Ray source, unattended mine&ndash;train&ndash;eval chains with gates, and a 28-item findings register that keeps the hypotheses the data killed.</li>
             </ul>

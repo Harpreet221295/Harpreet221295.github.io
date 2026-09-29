@@ -7,7 +7,7 @@
     <marker id="mA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#fbbf24"/></marker>
   </defs>
   <rect width="960" height="560" rx="16" fill="url(#bg)"/>
-  <text x="32" y="44" fill="#f8fafc" font-size="22" font-weight="800">Frontier curriculum: train only on questions the policy sometimes gets right</text>
+  <text x="32" y="44" fill="#f8fafc" font-size="22" font-weight="800">Frontier-set training: train only on questions the policy sometimes gets right</text>
   <text x="32" y="68" fill="#94a3b8" font-size="13">difficulty is measured with the policy itself, tracked per question, and a question retires once the policy has mastered it</text>
 
   <!-- POOL -->
@@ -34,17 +34,17 @@
   <!-- BUCKETS -->
   <g>
     <rect x="458" y="100" width="250" height="40" rx="8" fill="#132238" stroke="#1e3a5f"/>
-    <g fill="#34d399"><circle cx="476" cy="120" r="4.5"/><circle cx="488" cy="120" r="4.5"/><circle cx="500" cy="120" r="4.5"/><circle cx="512" cy="120" r="4.5"/><circle cx="524" cy="120" r="4.5"/><circle cx="536" cy="120" r="4.5"/><circle cx="548" cy="120" r="4.5"/><circle cx="560" cy="120" r="4.5"/></g>
+    <g fill="#199e70"><circle cx="476" cy="120" r="4.5"/><circle cx="488" cy="120" r="4.5"/><circle cx="500" cy="120" r="4.5"/><circle cx="512" cy="120" r="4.5"/><circle cx="524" cy="120" r="4.5"/><circle cx="536" cy="120" r="4.5"/><circle cx="548" cy="120" r="4.5"/><circle cx="560" cy="120" r="4.5"/></g>
     <text x="574" y="116" fill="#e2e8f0" font-size="12" font-weight="700">8/8 always right</text>
     <text x="574" y="131" fill="#94a3b8" font-size="11">mastered · 54% · no signal</text>
 
     <rect x="458" y="148" width="250" height="44" rx="8" fill="#2a1f0a" stroke="#fbbf24" stroke-width="2"/>
-    <g><circle cx="476" cy="170" r="4.5" fill="#34d399"/><circle cx="488" cy="170" r="4.5" fill="#f87171"/><circle cx="500" cy="170" r="4.5" fill="#34d399"/><circle cx="512" cy="170" r="4.5" fill="#34d399"/><circle cx="524" cy="170" r="4.5" fill="#f87171"/><circle cx="536" cy="170" r="4.5" fill="#34d399"/><circle cx="548" cy="170" r="4.5" fill="#f87171"/><circle cx="560" cy="170" r="4.5" fill="#34d399"/></g>
+    <g><circle cx="476" cy="170" r="4.5" fill="#199e70"/><circle cx="488" cy="170" r="4.5" fill="#d95926"/><circle cx="500" cy="170" r="4.5" fill="#199e70"/><circle cx="512" cy="170" r="4.5" fill="#199e70"/><circle cx="524" cy="170" r="4.5" fill="#d95926"/><circle cx="536" cy="170" r="4.5" fill="#199e70"/><circle cx="548" cy="170" r="4.5" fill="#d95926"/><circle cx="560" cy="170" r="4.5" fill="#199e70"/></g>
     <text x="574" y="166" fill="#fde68a" font-size="12" font-weight="700">1–7 of 8: frontier</text>
     <text x="574" y="181" fill="#fbbf24" font-size="11">32% · the only ones kept</text>
 
     <rect x="458" y="200" width="250" height="40" rx="8" fill="#132238" stroke="#1e3a5f"/>
-    <g fill="#f87171"><circle cx="476" cy="220" r="4.5"/><circle cx="488" cy="220" r="4.5"/><circle cx="500" cy="220" r="4.5"/><circle cx="512" cy="220" r="4.5"/><circle cx="524" cy="220" r="4.5"/><circle cx="536" cy="220" r="4.5"/><circle cx="548" cy="220" r="4.5"/><circle cx="560" cy="220" r="4.5"/></g>
+    <g fill="#d95926"><circle cx="476" cy="220" r="4.5"/><circle cx="488" cy="220" r="4.5"/><circle cx="500" cy="220" r="4.5"/><circle cx="512" cy="220" r="4.5"/><circle cx="524" cy="220" r="4.5"/><circle cx="536" cy="220" r="4.5"/><circle cx="548" cy="220" r="4.5"/><circle cx="560" cy="220" r="4.5"/></g>
     <text x="574" y="216" fill="#e2e8f0" font-size="12" font-weight="700">0/8 never right</text>
     <text x="574" y="231" fill="#94a3b8" font-size="11">never · 14% · no signal</text>
   </g>
