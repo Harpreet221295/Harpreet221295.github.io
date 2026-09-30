@@ -400,7 +400,7 @@
 
             <div class="tech-tags">
               <span>Qwen3.8-27B</span><span>τ²-bench</span><span>vLLM</span><span>RunPod</span><span>LiteLLM</span>
-              <span>FastAPI</span><span>tool calling</span><span>structured outputs</span><span>vision</span><span>Python</span>
+              <span>FastAPI</span><span>tool calling</span><span>RL environment</span><span>structured outputs</span><span>vision</span><span>Python</span>
             </div>
           </div>
           <div class="featured-body">
@@ -428,6 +428,7 @@
               <li><strong>Honest about the setup.</strong> The customer simulator is Qwen itself, so 0.74 / 0.79 are stated as indicative, not leaderboard; the official gpt-4.1 simulator is one flag away, and the NL-assertion judge is gpt-4.1 as in the official harness. Failure types are catalogued: duplicate writes, modify vs cancel vs exchange, unnecessary transfers.</li>
               <li><strong>Capability suites that grade themselves.</strong> Vision, OCR and chart tests run on generated images with known ground truth; coding snippets execute against hidden tests; structured output is checked against schema, choice and regex; long context is a needle at 8K and 32K. When a grader was stricter than the model, the grader was fixed and logged.</li>
               <li><strong>Thinking made visible.</strong> The playground streams the answer and the reasoning in separate panels with off / low / medium / xhigh effort, image attach, and a demo tool loop you can watch turn by turn. Deployment is documented to the flag, including the gotchas that crash-loop a pod.</li>
+              <li><strong>More than an eval: a training environment.</strong> Every task already comes with what an agentic RL loop needs: a simulated customer to talk to, a policy to follow, a tool API over a real database, and a reward from checking the final database state and write actions, plus saved conversations and repeats for pass^k. That makes it usable for RL on multi-turn, tool-using agents (GRPO-style groups of conversations per task), rejection-sampling SFT on the conversations that pass, on-policy distillation where a stronger model scores or corrects Qwen's own conversations, and regression checks between model or prompt versions. Interactive mode adds a human in the loop: you play the customer and each graded conversation is a new trajectory. The NL-assertion part of the reward comes from an LLM judge, so that part is noisier than the database checks.</li>
             </ul>
           </div>
         </a>
