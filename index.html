@@ -451,7 +451,7 @@
 
             <div class="tech-tags">
               <span>Qwen3.8-27B</span><span>Docker / Colima</span><span>E2B</span><span>Terminal-Bench style</span><span>Harbor layout</span>
-              <span>vLLM</span><span>tool calling</span><span>FastAPI</span><span>WebSockets</span><span>Python</span>
+              <span>vLLM</span><span>tool calling</span><span>RL environment</span><span>FastAPI</span><span>WebSockets</span><span>Python</span>
             </div>
           </div>
           <div class="featured-body">
@@ -478,6 +478,7 @@
               <li><strong>Isolation as a first-class choice.</strong> Docker via Colima or Docker Desktop by default (2 CPU, 2 GB, no network, fresh container per run), E2B cloud microVMs, or a local mode for debugging that is guarded by a confirmation.</li>
               <li><strong>Three ways to look.</strong> Run: one task in a fresh sandbox, graded, with thinking in gold and files and commands typing out as the model writes them. Session: a persistent sandbox you talk to, where files survive across messages. Past runs: every batch with full transcripts.</li>
               <li><strong>12/12 on the first run, reported with its caveat.</strong> Zero malformed tool calls through vLLM's qwen3 parser, 4 to 10 steps and 22 to 62 seconds per task; one task passed the grader but hit the step cap re-verifying edge cases. The README says the set is now too easy to separate strong models, and harder tasks with pass@3 are the next step.</li>
+              <li><strong>More than an eval: a training environment.</strong> The pieces an agentic RL loop needs are already here: a fresh sandbox per rollout, a verifiable 0/1 reward from the task's own test script, full multi-turn transcripts, and repeats per task. That makes it usable for RL on coding agents (GRPO-style group rollouts per task), rejection-sampling SFT on passing transcripts, on-policy distillation where a teacher scores the student's own trajectories, and regression checks between model or prompt versions. Because it speaks any OpenAI-compatible endpoint, the same tasks can compare open models side by side.</li>
             </ul>
           </div>
         </a>
