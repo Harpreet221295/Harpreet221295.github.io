@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Harpreet Singh — Gen AI Engineer</title>
-  <link rel="stylesheet" href="style.css?v=20260920" />
+  <link rel="stylesheet" href="style.css?v=20260929" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -76,23 +76,6 @@
               </div>
               <span class="date">July 2024 – Present &nbsp;|&nbsp; Pleasanton, California</span>
             </div>
-            <ul>
-              <li><strong>Vera AI — production multi-LLM agentic system, built from scratch.</strong> Ran requirements analysis across teams and designed a hierarchical supervisor–subagent architecture in LangGraph, each domain agent owning its own tool pool, prompt and conversational contract — chosen over a single agent to keep 30+ tools and their deterministic post-action workflows tractable.</li>
-              <li><strong>The reusable agent infrastructure the rest of the team builds on:</strong> shared state-management protocols and context-engineering utilities, agent/tool abstractions, deterministic post-action hooks, Redis-backed conversation state, pattern-derived guardrails with retry for malformed function calls, and a configuration scheme gating which agents are exposed by region, country or user. Tool calling was developed and tested in a sandboxed API environment, then deployed to production.</li>
-              <li><strong>Customer-support subagent — ReAct-style Agentic RAG</strong> over 1,500+ HTML support articles: HTML normalization, overlapping chunking, metadata-preserving indexing and hybrid BM25 + vector retrieval, with answers required to cite the source article, deep links and YouTube URLs. Shipped as a FastAPI service on Azure App Service.</li>
-              <li><strong>Agent evaluation framework</strong> — single-turn and multi-turn tracks over one metric set: verifiable retrieval and citation Precision/Recall/F1, LLM-as-a-Judge for response-level correctness, Agent-as-a-Judge for trajectory-level scoring of whole sessions, and a persona-conditioned LLM-simulated user (30 situations drawn from real call data, six personas, a 15-turn budget) that produces the multi-turn conversations single-turn QA cannot reach. Later adapted by other engineers for the remaining agents.</li>
-              <li><strong>Multi-agent deep research service</strong> — a LangGraph system orchestrating query rewriting, web search, content extraction, evidence distillation, reflection, research planning and report generation into Pydantic schema-driven JSON, with an iterative plan–search–reflect loop under configurable depth and early stopping, and dynamic map-reduce fan-out to N parallel section-writer subagents. Productionized into Salesforce lead enrichment.</li>
-              <li><strong>Real-time voice agent</strong> — built the voice layer that took <strong>Connect AI</strong>, Vagaro's customer-facing multi-agent assistant, from chat to live telephony: an event-driven Voice Gateway coordinating Twilio, Azure Voice Live and streaming TTS, with Silero VAD turn detection, barge-in handling, dead-air monitoring and a finite-state machine relaying thinking cues during long agent and tool calls — built to reduce perceived latency. Business APIs exposed to the agents as tools over MCP.</li>
-              <li><strong>Call Insights extraction using LLMs</strong> — 11 schema-constrained extraction tasks over customer support and sales call transcripts (cancellation intent, competitor mentions, feature requests, upsell signals), with output contracts and per-task eval metrics agreed across six cross-functional teams. Fine-tuned one LoRA adapter per task on IBM Granite 3.3 8B and served them multi-LoRA on vLLM at ~700–800 requests/hour, replacing frontier-API calls.</li>
-              <li><strong>Inference tuning for that stack:</strong> characterized the real workload first — aggregate rate, skewed per-task distribution, batch bursts under a one-hour SLA, mixed output lengths — then quantized to W8A8 int8 (SmoothQuant + GPTQ via LLM Compressor) calibrated on real production prompts, and tuned continuous batching, FP8 KV cache, chunked prefill and the batched-token budget against it rather than against defaults. Constrained decoding with xgrammar over each task's JSON schema; throughput/latency benchmarking drove GPU selection.</li>
-            </ul>
-            <div class="tech-tags">
-              <span>Python</span><span>LangGraph</span><span>LangChain</span><span>MCP</span><span>Pydantic</span>
-              <span>Redis</span><span>FastAPI</span><span>vLLM</span><span>PEFT/LoRA</span><span>TRL</span>
-              <span>Unsloth</span><span>LLM Compressor</span><span>xgrammar</span><span>BM25</span><span>vector search</span>
-              <span>Tavily</span><span>Firecrawl</span><span>Twilio</span><span>Azure Voice Live</span><span>ElevenLabs</span>
-              <span>Azure OpenAI</span><span>Microsoft Fabric</span>
-            </div>
           </div>
         </div>
 
@@ -105,19 +88,6 @@
                 <span class="company">Symbl.ai</span>
               </div>
               <span class="date">Mar 2024 – July 2024 &nbsp;|&nbsp; Remote, United States</span>
-            </div>
-            <ul>
-              <li><strong>Long-context multimodal audio language model</strong> — extended SALMONN (frozen Whisper-Large-v2 + BEATs encoders, window-level Q-Former connector, Vicuna-13B backbone) from a 30-second to a 5-minute audio context.</li>
-              <li>Trained only the cross-modal connector — Q-Former, learned query tokens, projection into the LM embedding space — alongside LoRA adapters on the frozen 13B backbone.</li>
-              <li>Implemented the training stack on HuggingFace Accelerate + DeepSpeed, running distributed data-parallel training across 8×A100-80GB with FP16 mixed precision and gradient accumulation.</li>
-              <li>Built the training dataset from SPGISpeech, GigaSpeech, LibriSpeech and AMI — a deliberate mix of clip durations, instruction labels synthesized with Llama 3 70B, and recording-level splits to prevent leakage.</li>
-              <li>Instruction-tuned transcription, audio QA, speaker gender classification, meeting summarization and action-item extraction; diagnosed cross-task degradation from catastrophic forgetting and recovered it by warm-starting from the ASR-trained checkpoint and continuing on mixed multi-task data.</li>
-              <li>Implemented attention-sink based sliding-window attention in Llama-7B and Phi to extend usable input context at inference time without retraining, and measured the quality degradation it introduced as context grew.</li>
-            </ul>
-            <div class="tech-tags">
-              <span>PyTorch</span><span>HuggingFace</span><span>peft</span><span>Accelerate</span><span>DeepSpeed</span>
-              <span>Whisper-Large-v2</span><span>BEATs</span><span>Q-Former</span><span>Vicuna-13B</span>
-              <span>Llama 3 70B</span><span>FlashAttention-2</span><span>vLLM</span><span>GCP</span><span>FastAPI</span>
             </div>
           </div>
         </div>
@@ -132,15 +102,6 @@
               </div>
               <span class="date">2023 – 2024 &nbsp;|&nbsp; San Diego, California</span>
             </div>
-            <ul>
-              <li>Built a RAG pipeline for next-item recommendation, retrieving from vector stores using a user's past interactions.</li>
-              <li>Trained dual-encoder (retriever) and cross-encoder (re-ranker) models using contrastive learning and knowledge distillation.</li>
-              <li>Fine-tuned Llama-7B with LoRA to generate user-personalized titles for recommended items, conditioned on past-item interactions and item descriptions.</li>
-            </ul>
-            <div class="tech-tags">
-              <span>Python</span><span>PyTorch</span><span>HuggingFace</span><span>peft</span>
-              <span>LangChain</span><span>RAG</span><span>Retrieval</span><span>Recommendation</span>
-            </div>
           </div>
         </div>
 
@@ -154,9 +115,6 @@
               </div>
               <span class="date">2019 – 2020 &nbsp;|&nbsp; Bangalore, India</span>
             </div>
-            <ul>
-              <li>Built a Deep-CNN facial emotion detection service with a video inference pipeline and DBSCAN post-processing, producing per-subject facial emotion timelines across a video.</li>
-            </ul>
           </div>
         </div>
 
@@ -170,9 +128,6 @@
               </div>
               <span class="date">2018 – 2019 &nbsp;|&nbsp; Bangalore, India</span>
             </div>
-            <ul>
-              <li>Integrated map components into the CX Cloud hybrid mobile application; UI development for Exascale Cloud.</li>
-            </ul>
           </div>
         </div>
 
